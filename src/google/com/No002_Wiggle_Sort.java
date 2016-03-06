@@ -17,4 +17,7 @@ package google.com;
  * 比中位数大的依次放在1,3,5,...位置。其余位置填充中位数。这样可以保证中位数一定与较小与较大的数相邻（题目保证一定有解）。
  */
 public class No002_Wiggle_Sort {
+    public static void main(String[] args) {
+
+    }
 }
