@@ -18,6 +18,6 @@ package google.com;
  */
 public class No002_Wiggle_Sort {
     public static void main(String[] args) {
-//
+//test
     }
 }
