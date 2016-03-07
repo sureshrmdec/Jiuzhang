@@ -33,18 +33,53 @@ import java.util.List;
  * Solution:
  */
 public class No068_Text_Justification {
+    public static void main(String[] args) {
+        No068_Text_Justification No068 = new No068_Text_Justification();
+        No068.fullJustify(new String[] {
+            "This", "is", "an", "example", "of", "text", "justification."
+        },16);
+    }
+
     public List<String> fullJustify(String[] words, int maxWidth) {
         int wordsCount = words.length;
         List<String> rst = new ArrayList<>();
         int curLen = 0;
         int lastI = 0;
-        for (int i = 0; i < wordsCount; i++){
-            if (i ==wordsCount || curLen + words[i].length() - lastI > maxWidth){
+        for (int i = 0; i < wordsCount; i++) {
+            if (i == wordsCount || curLen + words[i].length() - lastI > maxWidth) {
                 StringBuffer buf = new StringBuffer();
-                int spaceCount = maxWidth -curLen;
+                int spaceCount = maxWidth - curLen;
+                int spaceSlots = i - lastI - 1;
+                if (spaceSlots == 0 || i == wordsCount) {
+                    for (int j = lastI; j < i; j++) {
+                        buf.append(words[j]);
+                        if (j != i - 1)
+                            appendSpace(buf, 1);
+                    }
+                    appendSpace(buf, maxWidth - buf.length());
+                } else {
+                    int spaceEach = spaceCount / spaceSlots;
+                    int spaceExtra = spaceCount % spaceSlots;
+                    for (int j = lastI; j < i; j++) {
+                        buf.append(words[j]);
+                        if (j != i - 1) {
+                            appendSpace(buf, spaceEach + (j - lastI < spaceExtra ? 1 : 0));
+                        }
+                    }
+                }
+                rst.add(buf.toString());
+                lastI = i;
+                curLen = 0;
             }
+            if (i < wordsCount)
+                curLen += words[i].length();
         }
 
         return rst;
+    }
+
+    private void appendSpace(StringBuffer sb, int count) {
+        for (int i = 0; i < count; i++)
+            sb.append(' ');
     }
 }
