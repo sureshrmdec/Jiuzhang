@@ -41,39 +41,52 @@ import java.util.Arrays;
  * Solution:
  */
 public class No087_Scramble_String {
+
+    public static void main(String[] args) {
+        No087_Scramble_String no087 = new No087_Scramble_String();
+        System.out.println(no087.isScramble("sqksrqzhhmfmlmqvlbnaqcmebbkqfy",
+                "abbkyfqemcqnblvqmlmfmhhzqrskqs"));
+    }
+
     public boolean isScramble(String s1, String s2) {
         // Write your code here
         if (s1.length() != s2.length()) {
             return false;
         }
+
         if (s1.length() == 0 || s1.equals(s2)) {
             return true;
         }
+
         if (!isValid(s1, s2)) {
             return false;
         }// Base Cases
+
+
         int len = s1.length();
         for (int i = 1; i < len; i++) {
             String s11 = s1.substring(0, i);
             String s12 = s1.substring(i, len);
             String s21 = s2.substring(0, i);
             String s22 = s2.substring(i, len);
-            String s23 = s1.substring(0, len - i);
-            String s24 = s1.substring(len - i, len);
+            String s23 = s2.substring(0, len - i);
+            String s24 = s2.substring(len - i, len);
 
             if (isScramble(s11, s21) && isScramble(s12, s22)) return true;
-            if (isScramble(s11, s24) && isScramble(s12, s23)) return true;//cut
+            if (isScramble(s11, s24) && isScramble(s12, s23)) return true;
 
         }
         return false;
     }
 
+
     private boolean isValid(String s1, String s2) {
-        char[] arr1 = s1.toCharArray();
-        char[] arr2 = s2.toCharArray();
-        Arrays.sort(arr1);
-        Arrays.sort(arr2);
-        return (new String(arr1).equals(new String(arr2)));
+        char[] c1 = s1.toCharArray();
+        char[] c2 = s2.toCharArray();
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+
+        return (new String(c1)).equals(new String(c2));
     }
 
 
