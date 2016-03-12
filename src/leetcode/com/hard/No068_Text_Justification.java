@@ -36,6 +36,8 @@ import java.util.List;
  * 那么每个space slot放多少space？可以通过maxWidth-当前字符串总长获得，有余数的话，余数被分别放入前几个元素（j-lastI<extra）
  * 先对字符串数组进行循环,(i == wordsCount || curLen + words[i].length() + i - lastI > maxWidth)就是处理字符串的判断条件
  *
+ * i=wordcount 时候是不做任何处理的
+ *
  */
 public class No068_Text_Justification {
     public static void main(String[] args) {
