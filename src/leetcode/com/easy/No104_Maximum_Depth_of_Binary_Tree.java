@@ -1,5 +1,7 @@
 package leetcode.com.easy;
 
+import leetcode.com.util.TreeNode;
+
 /**
  * Created by jason on 2016/3/12.
  * Location:
@@ -28,13 +30,4 @@ public class No104_Maximum_Depth_of_Binary_Tree {
     }
 
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 }
