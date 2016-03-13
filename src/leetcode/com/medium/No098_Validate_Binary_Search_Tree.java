@@ -19,12 +19,39 @@ public class No098_Validate_Binary_Search_Tree {
     private int lastVal = Integer.MIN_VALUE;
     private boolean firstNode = true;
 
+    private TreeNode firstEle = null;
+    private TreeNode secondEle = null;
+
+    public void recoverTree(TreeNode root) {
+        recursive(root);
+        int tmp = firstEle.val;
+        firstEle.val = secondEle.val;
+        secondEle.val = tmp;
+    }
+
+    private void recursive(TreeNode root) {
+        if (root == null) return;
+        recursive(root.left);
+        if (!firstNode && firstEle == null && lastVal >= root.val) {
+            firstEle = root;
+        }
+        if (firstEle != null && lastVal >= root.val) {
+            secondEle = root;
+        }
+        firstNode = false;
+        lastVal = root.val;
+        recoverTree(root.right);
+
+
+    }
+
     public boolean isValidBST(TreeNode root) {
         if (root == null) return true;
 
-        if (!(isValidBST(root.left))) return false;
 
+        if (!(isValidBST(root.left))) return false;
         if (!firstNode && lastVal >= root.val) return false;
+
 
         firstNode = false;
         lastVal = root.val;
