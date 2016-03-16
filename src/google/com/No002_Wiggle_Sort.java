@@ -23,44 +23,4 @@ public class No002_Wiggle_Sort {
     public static void main(String[] args) {
 //test
     }
-
-    public List<Integer> numIslands(int m, int n, int[][] positions) {
-        boolean[][] map = new boolean[m][n];
-        int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-        List<Integer> list = new ArrayList<>();
-        int island = 0;
-        int[] fa = new int[m * n];
-
-        //initialization
-        for (int i = 0; i < m * n; i++) {
-            fa[i] = i;
-        }
-
-        for (int i = 0; i < positions.length; i++) {
-            island++;
-            map[positions[i][0]][positions[i][1]] = true;
-            int x, y;
-            int f = positions[i][0] * n + positions[i][1];
-            for (int k = 0; k < 4; k++) {
-                x = positions[i][0] + dir[k][0];
-                y = positions[i][1] + dir[k][1];
-                if (x >= 0 && x < m && y >= 0 && y < n && map[x][y] && getFather(fa, x * n + y) != f) {
-                    fa[getFather(fa, x * n + y)] = f;
-                    island--;
-                }
-            }
-            list.add(island);
-        }
-
-        return list;
-    }
-
-    //disjoint-set and path compression
-    public int getFather(int[] fa, int i) {
-        if (fa[i] == i) {
-            return i;
-        }
-        fa[i] = getFather(fa, fa[i]);//path compression
-        return fa[i];
-    }
 }
