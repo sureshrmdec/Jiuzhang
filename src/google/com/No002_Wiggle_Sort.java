@@ -46,6 +46,7 @@ public class No002_Wiggle_Sort {
                 y = positions[i][1] + dir[k][1];
                 if (x >= 0 && x < m && y >= 0 && y < n && map[x][y] && getFather(fa, x * n + y) != f) {
                     fa[getFather(fa, x * n + y)] = f;
+                    island--;
                 }
             }
             list.add(island);
