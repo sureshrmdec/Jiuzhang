@@ -1,5 +1,7 @@
 package leetcode.com.medium;
 
+import leetcode.com.util.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,16 +62,6 @@ public class No095_Unique_Binary_Search_Trees_II {
 
         }
         return rst;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 
 }

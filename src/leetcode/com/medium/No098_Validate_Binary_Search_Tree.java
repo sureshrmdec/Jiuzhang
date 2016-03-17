@@ -1,5 +1,7 @@
 package leetcode.com.medium;
 
+import leetcode.com.util.TreeNode;
+
 /**
  * Created by jason on 2016/3/11.
  * Location:
@@ -56,15 +58,5 @@ public class No098_Validate_Binary_Search_Tree {
         firstNode = false;
         lastVal = root.val;
         return isValidBST(root.right);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

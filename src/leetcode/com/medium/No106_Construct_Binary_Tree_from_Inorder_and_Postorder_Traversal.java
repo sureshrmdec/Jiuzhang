@@ -1,5 +1,7 @@
 package leetcode.com.medium;
 
+import leetcode.com.util.TreeNode;
+
 /**
  * Created by jason on 2016/3/13.
  * Location:
@@ -44,15 +46,5 @@ public class No106_Construct_Binary_Tree_from_Inorder_and_Postorder_Traversal {
         root.right = constructTree(inOrder, position + 1, inEnd, postOrder, postStart + (position - inStart), postEnd - 1);
 
         return root;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
