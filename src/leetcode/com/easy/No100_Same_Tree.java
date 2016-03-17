@@ -1,5 +1,7 @@
 package leetcode.com.easy;
 
+import leetcode.com.util.TreeNode;
+
 /**
  * Created by jason on 2016/2/24.
  * Location:
@@ -19,20 +21,7 @@ public class No100_Same_Tree {
     private boolean check(TreeNode p, TreeNode q) {
         if (p == null && q == null)
             return true;
-        if (p == null || q == null)
-            return false;
-        if (p.val != q.val)
-            return false;
-        return check(p.left, q.left)&&check(p.right, q.right);
+        return (p == null || q == null) && (p.val != q.val) && check(p.left, q.left) && check(p.right, q.right);
     }
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 }

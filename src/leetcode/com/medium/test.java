@@ -1,5 +1,7 @@
 package leetcode.com.medium;
 
+import leetcode.com.util.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -54,15 +56,5 @@ public class test {
         }
 
         return rst;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

@@ -1,5 +1,7 @@
 package leetcode.com.hard;
 
+import leetcode.com.util.TreeNode;
+
 /**
  * Created by jason on 2016/3/12.
  * Location:
@@ -25,7 +27,7 @@ public class No099_Recover_Binary_Search_Tree {
 
     private TreeNode firstEle = null;
     private TreeNode secondEle = null;
-    private TreeNode lastEle = new  TreeNode( Integer.MIN_VALUE);
+    private TreeNode lastEle = new TreeNode(Integer.MIN_VALUE);
 
     public void recoverTree(TreeNode root) {
         recursive(root);
@@ -50,16 +52,5 @@ public class No099_Recover_Binary_Search_Tree {
         lastEle = root;
         recursive(root.right);
 
-    }
-
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }

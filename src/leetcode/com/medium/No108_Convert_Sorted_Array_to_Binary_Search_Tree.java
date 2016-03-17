@@ -1,5 +1,7 @@
 package leetcode.com.medium;
 
+import leetcode.com.util.TreeNode;
+
 /**
  * Created by jason on 2016/3/12.
  * Location：
@@ -33,13 +35,4 @@ public class No108_Convert_Sorted_Array_to_Binary_Search_Tree {
         return root;
     }
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 }
