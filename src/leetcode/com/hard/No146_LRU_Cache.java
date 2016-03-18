@@ -20,7 +20,7 @@ import java.util.HashMap;
  * 数据结构为双向链表，在Cache中留存头结点（Least used node）和尾结点（newest node），
  * Set操作流程：
  * 1.key存在，则更新value值，return
- * 2.若链表已满，删除head结点的Node，重新设置head结点
+ * 2.若链表已满，删除head结点的Node，重新设置head结点  -->其实这个的capacity是由于HashMap来控制的
  * 3.将结点插入链表
  * 4.将新结点移到tail结点
  * Get操作：
