@@ -49,7 +49,9 @@ public class No124_Binary_Tree_Maximum_Path_Sum {
         ResultType right = helper(root.right);
         // Conquer
         int singlePath = Math.max(left.singlePath, right.singlePath) + root.val;
+        //bug1: forget to max(singlePath, 0) --->有时singlePath为负值 需要单独处理哦
         singlePath = Math.max(singlePath, 0);
+        //bug2:forget to count left and right
         int maxPath = Math.max(left.maxPath, right.maxPath);
         maxPath = Math.max(maxPath, left.singlePath + right.singlePath + root.val);
         return new ResultType(singlePath, maxPath);
