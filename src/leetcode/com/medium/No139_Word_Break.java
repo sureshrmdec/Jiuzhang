@@ -20,36 +20,7 @@ import java.util.Set;
  */
 public class No139_Word_Break {
 
-//    public boolean wordBreak(String s, Set<String> dict) {
-//        if(s==null || s.length()==0) return true;
-//
-//        int maxLength = getMaxLength(dict);
-//
-//        boolean[] canSegment =new boolean[s.length()+1];
-//        Arrays.fill(canSegment,false);
-//        canSegment[0]=true;
-//
-//        for(int i=1;i<canSegment.length;i++){
-//            for(int lastL = 1; lastL<=i && lastL<=maxLength;lastL++){
-//                if(!canSegment[i-lastL]) break;
-//                if(dict.contains(s.substring(i-lastL,i))){
-//                    canSegment[i]=true;
-//                    break;
-//                }
-//
-//            }
-//        }
-//        return canSegment[canSegment.length-1];
-//
-//    }
-//
-//    private int getMaxLength(Set<String> dict){
-//        int maxLength=0;
-//        for(String word:dict)
-//            maxLength=Math.max(maxLength, word.length());
-//        return maxLength;
-//
-//    }
+
 
     private int getMaxLength(Set<String> dict) {
         int maxLength = 0;
@@ -73,6 +44,7 @@ public class No139_Word_Break {
                  lastWordLength < maxLength && lastWordLength <= i;
                  lastWordLength++) {
                 if (!canSegment[i - lastWordLength]) {
+                    //bug: shouldn't break, but continue
                     continue;
                 }
                 String word = s.substring(i - lastWordLength, i);
