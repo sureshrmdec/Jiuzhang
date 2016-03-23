@@ -1,5 +1,6 @@
 package leetcode.com.medium;
 
+import leetcode.com.util.ListNode;
 import leetcode.com.util.TreeNode;
 
 /**
@@ -50,12 +51,4 @@ public class No109_Convert_Sorted_List_to_Binary_Search_Tree {
         return sortedListToBSTHelper(size);
     }
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 }

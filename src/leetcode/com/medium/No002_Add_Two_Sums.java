@@ -1,5 +1,7 @@
 package leetcode.com.medium;
 
+import leetcode.com.util.ListNode;
+
 /**
  * Created by jason on 2016/1/17.
  * Locations:
@@ -20,14 +22,6 @@ package leetcode.com.medium;
  * 如此看来，也可以进行N位数的相加求和处理。。。算是一种备选的解决方案
  */
 public class No002_Add_Two_Sums {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);

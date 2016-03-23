@@ -1,5 +1,7 @@
 package leetcode.com.hard;
 
+import leetcode.com.util.ListNode;
+
 /**
  * Created by jason on 2016/2/1.
  * Locations:
@@ -9,14 +11,6 @@ package leetcode.com.hard;
  * Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
  */
 public class No023_Merge_k_Sorted_Lists {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) {

@@ -1,5 +1,7 @@
 package leetcode.com.hard;
 
+import leetcode.com.util.ListNode;
+
 /**
  * Created by jason on 2016/2/1.
  * Locations:
@@ -22,15 +24,6 @@ package leetcode.com.hard;
  * 源代码中的reverse方法，理解起来有点困难，看看注释就明白多了，还是要自己再写一遍才会彻底理解
  */
 public class No025_Reverse_Nodes_in_k_Group {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     //reverse head->n1->..->nk->next..
     //to head->nk->..->n1->next..
     //return n1

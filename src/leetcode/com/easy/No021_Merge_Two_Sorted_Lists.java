@@ -1,5 +1,7 @@
 package leetcode.com.easy;
 
+import leetcode.com.util.ListNode;
+
 /**
  * Created by jason on 2016/1/31.
  * Locations:
@@ -15,14 +17,6 @@ package leetcode.com.easy;
  * 循环处理后还会有list没有循环完毕，需要单独循环一次
  */
 public class No021_Merge_Two_Sorted_Lists {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);

@@ -1,5 +1,7 @@
 package leetcode.com.easy;
 
+import leetcode.com.util.ListNode;
+
 /**
  * Created by jason on 2016/2/8.
  * Locations:
@@ -20,15 +22,6 @@ package leetcode.com.easy;
  * 因为要奇数，偶数元素要分开，所以每次循环的时候要判断2个元素，然后要在循环判断下次次个元素是否为null
  */
 public class No328_Odd_Even_Linked_List {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     public ListNode oddEvenList(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;

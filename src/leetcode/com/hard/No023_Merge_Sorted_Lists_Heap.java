@@ -1,5 +1,7 @@
 package leetcode.com.hard;
 
+import leetcode.com.util.ListNode;
+
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -19,7 +21,7 @@ import java.util.Queue;
  * A.将所有的数组元素放到heap中----->注意此时，heap已经完成一次排列，最小的元素在顶端
  * B.取出顶端元素，然后将该元素的next点放到heap中--->注意：放的同时又会进行一次排列，将新的最小元素放置顶端
  * C.直到heap为空，执行A->C
- *
+ * <p>
  * *****************************************************************
  * Tips：
  * 1。看到了网上给出的divide&Conquer的解决方案，有两点感触：
@@ -27,14 +29,6 @@ import java.util.Queue;
  * B.在处理两个listNode串的时候，需要放在整体中进行处理才好
  */
 public class No023_Merge_Sorted_Lists_Heap {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public Comparator<ListNode> ListNodeComparator = new Comparator<ListNode>() {
         @Override

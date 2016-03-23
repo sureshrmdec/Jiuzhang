@@ -1,5 +1,7 @@
 package leetcode.com.medium;
 
+import leetcode.com.util.ListNode;
+
 /**
  * Created by jason on 2016/2/23.
  * Location:
@@ -55,12 +57,4 @@ public class No061_Rotate_List {
         return length;
     }
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 }

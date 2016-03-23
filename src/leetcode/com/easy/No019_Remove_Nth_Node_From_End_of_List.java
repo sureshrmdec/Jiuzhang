@@ -1,5 +1,7 @@
 package leetcode.com.easy;
 
+import leetcode.com.util.ListNode;
+
 /**
  * Created by jason on 2016/1/31.
  * Locations:
@@ -21,14 +23,6 @@ package leetcode.com.easy;
  * 第一遍看答案没看明白，后来才明白，俩指针中间的差值就是我们要的步骤
  */
 public class No019_Remove_Nth_Node_From_End_of_List {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(0);

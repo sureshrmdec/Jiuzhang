@@ -1,9 +1,6 @@
 package leetcode.com.hard;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import leetcode.com.util.ListNode;
 
 /**
  * Created by jason on 2016/1/17.
@@ -27,16 +24,6 @@ import java.util.Queue;
  * B.在处理两个listNode串的时候，需要放在整体中进行处理才好
  */
 public class No023_Merge_Sorted_Lists_Divide_Conquer {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) {
             return null;

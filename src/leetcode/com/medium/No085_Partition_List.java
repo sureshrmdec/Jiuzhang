@@ -1,6 +1,6 @@
 package leetcode.com.medium;
 
-import leetcode.com.hard.No023_Merge_Sorted_Lists_Divide_Conquer;
+import leetcode.com.util.ListNode;
 
 /**
  * Created by jason on 2016/1/23.
@@ -18,32 +18,23 @@ import leetcode.com.hard.No023_Merge_Sorted_Lists_Divide_Conquer;
  * 将list分为独立的两个list，然后再链接在一起
  */
 public class No085_Partition_List {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     public ListNode partition(ListNode head, int x) {
         ListNode leftDummy = new ListNode(0);
         ListNode rightDummy = new ListNode(0);
         ListNode left = leftDummy;
         ListNode right = rightDummy;
-        while (head!=null){
-            if (head.val<x){
-                left.next=head;
-                left=left.next;
-            }else {
+        while (head != null) {
+            if (head.val < x) {
+                left.next = head;
+                left = left.next;
+            } else {
                 right.next = head;
-                right=right.next;
+                right = right.next;
             }
-            head= head.next;
+            head = head.next;
         }
-        right.next=null;
-        left.next=rightDummy.next;
+        right.next = null;
+        left.next = rightDummy.next;
         return leftDummy.next;
     }
 }

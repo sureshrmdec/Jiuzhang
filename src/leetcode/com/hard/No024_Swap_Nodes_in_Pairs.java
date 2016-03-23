@@ -1,5 +1,7 @@
 package leetcode.com.hard;
 
+import leetcode.com.util.ListNode;
+
 /**
  * Created by jason on 2016/2/1.
  * Locations:
@@ -16,15 +18,6 @@ package leetcode.com.hard;
  * 两两结点进行交换处理，画出拆链，接链的图即可明白大部分啦
  */
 public class No024_Swap_Nodes_in_Pairs {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     public ListNode swapPairs(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
@@ -32,7 +25,7 @@ public class No024_Swap_Nodes_in_Pairs {
         while (head != null && head.next != null) {
             pre.next = head.next;
             head.next = head.next.next;
-            pre.next.next=head;
+            pre.next.next = head;
             pre = head;
 
             head = head.next;
