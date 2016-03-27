@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Created by jason on 2016/3/25.
- * Solution:
- * https://leetcode.com/problems/binary-tree-preorder-traversal/
- * *****************************************************************
- * Description:
- * Given a binary tree, return the preorder traversal of its nodes' values.
+ * Created by jason on 2016/3/27.
+ * Location：
+ * https://leetcode.com/problems/binary-tree-postorder-traversal/
+ * ****************************************************************
+ * Description：
+ * Given a binary tree, return the postorder traversal of its nodes' values.
  * For example:
  * Given binary tree {1,#,2,3},
  * 1
@@ -20,20 +20,25 @@ import java.util.Stack;
  * 2
  * /
  * 3
- * return [1,2,3].
+ * return [3,2,1].
  * Note: Recursive solution is trivial, could you do it iteratively?
- * ******************************************************************
- * Solution:
- * 提示不让用递归，那么想想看就只有堆栈可以轻易替换递归了
+ * *******************************************************************
+ * Solution：
+ * *******************************************************************
+ * Hints:
+ * http://blog.sina.com.cn/s/blog_eb52001d0102v1si.html
  */
-public class No144_Binary_Tree_Preorder_Traversal {
-    public List<Integer> preorderTraversal(TreeNode root) {
+public class No145_Binary_Tree_Postorder_Traversal {
+    public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> rst = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
 
         if (root == null) return rst;
 
         stack.push(root);
+        if (root.right != null) stack.push(root.right);
+        if (root.left != null) stack.push(root.left);
+
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
             rst.add(node.val);
