@@ -4,6 +4,7 @@ import leetcode.com.util.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by jason on 2016/3/25.
@@ -28,11 +29,21 @@ import java.util.List;
 public class No144_Binary_Tree_Preorder_Traversal {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> rst = new ArrayList<>();
-        while (root != null) {
-            rst.add(root.val);
+        Stack<TreeNode> stack = new Stack<>();
 
+        if (root == null) return rst;
+
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            rst.add(node.val);
+
+            //bug:将root与node弄混
+            if (node.right != null) stack.push(node.right);
+
+            if (node.left != null) stack.push(node.left);
         }
-
         return rst;
+
     }
 }
