@@ -1,5 +1,8 @@
 package leetcode.com.medium;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * Created by jason on 2016/3/30.
  * Location:
@@ -14,4 +17,28 @@ package leetcode.com.medium;
  * 完全没有想到解法。看了答案后才明白，用Comparator接口来实现啊，但是要处理下
  */
 public class No179_Largest_Number {
+    public String largestNumber(int[] nums) {
+        String[] strs = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            strs[i] = Integer.toString(nums[i]);
+        }
+        Arrays.sort(strs, new NumberComparator());
+        StringBuilder sb = new StringBuilder();
+        for (String str : strs)
+            sb.append(str);
+        String result = sb.toString();
+        int index = 0;
+        while (index < result.length() && result.charAt(index) == '0')
+            index++;
+
+        return result.substring(index);
+    }
+
+    public class NumberComparator implements Comparator<String> {
+
+        @Override
+        public int compare(String s1, String s2) {
+            return (s2 + s1).compareTo(s1 + s2);
+        }
+    }
 }
