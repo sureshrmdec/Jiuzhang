@@ -15,28 +15,36 @@ import java.util.Comparator;
  * ************************************************
  * Solution:
  * 完全没有想到解法。看了答案后才明白，用Comparator接口来实现啊，但是要处理下
+ * ************************************************
+ * Hints:
+ * 一个类实现了Comparable接口则表明这个类的对象之间是可以相互比较的，这个类对象组成的集合就可以直接使用sort方法排序。
+ * Comparator可以看成一种算法的实现，将算法和数据分离，Comparator也可以在下面两种环境下使用：
+ * 1、类的设计师没有考虑到比较问题而没有实现Comparable，可以通过Comparator来实现排序而不必改变对象本身
+ * 2、可以使用多种排序标准，比如升序、降序等。
+ * 2、可以使用多种排序标准，比如升序、降序等。
  */
 public class No179_Largest_Number {
     public String largestNumber(int[] nums) {
         String[] strs = new String[nums.length];
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < strs.length; i++) {
             strs[i] = Integer.toString(nums[i]);
         }
+
         Arrays.sort(strs, new NumberComparator());
         StringBuilder sb = new StringBuilder();
         for (String str : strs)
             sb.append(str);
         String result = sb.toString();
         int index = 0;
-        while (index < result.length() && result.charAt(index) == '0')
-            index++;
+        //bug1: || -> &&
+        //bug3: charAt(index) != '0' -> charAt(index) == '0'
+        while (index < result.length() && result.charAt(index) == '0') index++;
 
-        return result.substring(index);
+        //bug2:index == (result.length() - 1) -> index == result.length()
+        return index == result.length() ? "0" : result.substring(index);
     }
 
     public class NumberComparator implements Comparator<String> {
-
-        @Override
         public int compare(String s1, String s2) {
             return (s2 + s1).compareTo(s1 + s2);
         }
