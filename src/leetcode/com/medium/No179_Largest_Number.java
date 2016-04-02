@@ -17,6 +17,22 @@ import java.util.Comparator;
  * 完全没有想到解法。看了答案后才明白，用Comparator接口来实现啊，但是要处理下
  */
 public class No179_Largest_Number {
+
+    public static void main(String[] args) {
+        String a = "123";
+        String b = "123";
+//        b = "23";
+
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+        a = new String("123");
+
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+
+
+    }
+
     public String largestNumber(int[] nums) {
         String[] strs = new String[nums.length];
         for (int i = 0; i < nums.length; i++) {

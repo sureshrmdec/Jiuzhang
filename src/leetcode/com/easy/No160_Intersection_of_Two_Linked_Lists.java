@@ -33,6 +33,34 @@ import leetcode.com.util.ListNode;
  * Reference：http://blog.sina.com.cn/s/blog_624ca80801011u6m.html
  */
 public class No160_Intersection_of_Two_Linked_Lists {
+    public static void main(String[] args) {
+        No160_Intersection_of_Two_Linked_Lists obj = new No160_Intersection_of_Two_Linked_Lists();
+
+        int i = 1;
+        ListNode dummy = new ListNode(-1);
+        ListNode head = new ListNode(i++);
+        dummy.next = head;
+        for (; i < 97; i++) {
+            head.next = new ListNode(i);
+
+            System.out.print("  " + head.val);
+            head = head.next;
+        }
+        System.out.print("  " + head.val);
+        System.out.println();
+        ListNode slow = dummy.next;
+        ListNode fast = dummy.next.next;
+        while (fast != null && fast.next != null) {
+            System.out.print(fast.val + " ");
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        System.out.println();
+        System.out.println("slow: " + slow == null ? "null" : slow.val);
+        System.out.println("fast: " + fast == null ? "null" : fast.val);
+
+    }
+
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) return null;
 
