@@ -30,6 +30,7 @@ import leetcode.com.util.ListNode;
  * *************************************************************************
  * Hints:
  * 快慢指针的问题，要再消化消化
+ * 证明文章：http://blog.csdn.net/l294265421/article/details/50478818
  * Reference：http://blog.sina.com.cn/s/blog_624ca80801011u6m.html
  */
 public class No160_Intersection_of_Two_Linked_Lists {
@@ -40,22 +41,75 @@ public class No160_Intersection_of_Two_Linked_Lists {
         ListNode dummy = new ListNode(-1);
         ListNode head = new ListNode(i++);
         dummy.next = head;
-        for (; i < 97; i++) {
+        ListNode circuleNode = null;
+        for (; i < 98; i++) {
             head.next = new ListNode(i);
 
+            if (i == 33) circuleNode = head.next;
             System.out.print("  " + head.val);
             head = head.next;
         }
+        head.next = circuleNode;
         System.out.print("  " + head.val);
         System.out.println();
         ListNode slow = dummy.next;
-        ListNode fast = dummy.next.next;
+        ListNode fast = dummy.next;
+
+        StringBuffer slowSb =new StringBuffer();
+        StringBuffer fastSb =new StringBuffer();
         while (fast != null && fast.next != null) {
-            System.out.print(fast.val + " ");
             slow = slow.next;
             fast = fast.next.next;
+            if (slow == fast) {
+                System.out.print("slow==fast: " + slow.val);
+                break;
+            }
+            slowSb.append(slow.val);
+            slowSb.append(" ");
+            fastSb.append(fast.val);
+            fastSb.append(" ");
+            System.out.print(fast.val + " ");
+
         }
+        slowSb.append(" ||| ");
+        slowSb.append(" ");
+        fastSb.append(" ||| ");
+        fastSb.append(" ");
+        slowSb.append(slow.val);
+        slowSb.append(" ");
+        fastSb.append(fast.val);
+        fastSb.append(" ");
         System.out.println();
+
+        System.out.println("slow: " + slowSb.toString());
+        System.out.println("fast: " + fastSb.toString());
+
+        slowSb.append(" ||| ");
+        slowSb.append(" ");
+        fastSb.append(" ||| ");
+        fastSb.append(" ");
+
+        slowSb =new StringBuffer();
+        fastSb =new StringBuffer();
+        slow= dummy.next;
+//        fast=fast.next;
+        while (slow != fast) {
+            slowSb.append(slow.val);
+            slowSb.append(" ");
+            fastSb.append(fast.val);
+            fastSb.append(" ");
+
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slowSb.append(slow.val);
+        slowSb.append(" ");
+        fastSb.append(fast.val);
+        fastSb.append(" ");
+
+
+        System.out.println("slow: " + slowSb.toString());
+        System.out.println("fast: " + fastSb.toString());
         System.out.println("slow: " + slow == null ? "null" : slow.val);
         System.out.println("fast: " + fast == null ? "null" : fast.val);
 
