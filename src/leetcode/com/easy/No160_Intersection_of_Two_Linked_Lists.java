@@ -30,7 +30,7 @@ import leetcode.com.util.ListNode;
  * *************************************************************************
  * Hints:
  * 快慢指针的问题，要再消化消化
- * 证明文章：http://blog.csdn.net/l294265421/article/details/50478818
+ * 证明文章：http://blog.csdn.net/l294265421/article/details/50478818  --->按照几何问题将其证明
  * Reference：http://blog.sina.com.cn/s/blog_624ca80801011u6m.html
  */
 public class No160_Intersection_of_Two_Linked_Lists {
@@ -55,8 +55,8 @@ public class No160_Intersection_of_Two_Linked_Lists {
         ListNode slow = dummy.next;
         ListNode fast = dummy.next;
 
-        StringBuffer slowSb =new StringBuffer();
-        StringBuffer fastSb =new StringBuffer();
+        StringBuffer slowSb = new StringBuffer();
+        StringBuffer fastSb = new StringBuffer();
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -89,9 +89,9 @@ public class No160_Intersection_of_Two_Linked_Lists {
         fastSb.append(" ||| ");
         fastSb.append(" ");
 
-        slowSb =new StringBuffer();
-        fastSb =new StringBuffer();
-        slow= dummy.next;
+        slowSb = new StringBuffer();
+        fastSb = new StringBuffer();
+        slow = dummy.next;
 //        fast=fast.next;
         while (slow != fast) {
             slowSb.append(slow.val);
@@ -131,23 +131,21 @@ public class No160_Intersection_of_Two_Linked_Lists {
     }
 
     private ListNode listCycleII(ListNode head) {
-        ListNode slow = head, fast = head.next;
-
-        while (slow != fast) {
+        ListNode slow = head, fast = head;
+        do {
             //非环形链表
             if (fast == null || fast.next == null) {
                 return null;
             }
             slow = slow.next;
             fast = fast.next.next;
-        }
+
+        } while (slow != fast);
         //make sure the head of the circle
         slow = head;
-        //bug2:head.next -> fast.next
-        fast = fast.next;
         while (slow != fast) {
             slow = slow.next;
-            fast = fast.next.next;
+            fast = fast.next;
         }
         return slow;
     }
