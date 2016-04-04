@@ -20,15 +20,30 @@ package leetcode.com.medium;
  * n=n&n-1
  */
 public class No201_Bitwise_AND_of_Numbers_Range {
+    private int index = 0;
+
+    public static void main(String[] args) {
+        No201_Bitwise_AND_of_Numbers_Range obj = new No201_Bitwise_AND_of_Numbers_Range();
+        obj.index = 0;
+        obj.rangeBitwiseAnd(1, 12345678);
+        System.out.println("index: " + obj.index);
+        obj.index = 0;
+        obj.rangeBitwiseAnd_Jiuzhang(1, 12345678);
+        System.out.println("index: " + obj.index);
+    }
+
     public int rangeBitwiseAnd(int m, int n) {
         while (n > m) {
+            index++;
             //bug1:这行代码代表从n至m间的数字不断取与操作，找到最小的集合，然后再m进行与操作
+            //Hints:按位于操作还是比较快的
             n = n & n - 1;
         }
         return m & n;
     }
 
     public int rangeBitwiseAnd_Jiuzhang(int m, int n) {
+        index++;
         if (n == m) {
             return n;
         }
