@@ -15,10 +15,10 @@ package leetcode.com.easy;
  * <p>
  * Subscribe to see which companies asked this question
  */
-public class No67_Add_Binary {
+public class No067_Add_Binary {
 
     public static void main(String[] args) {
-        No67_Add_Binary n067 = new No67_Add_Binary();
+        No067_Add_Binary n067 = new No067_Add_Binary();
         n067.addBinary("1010", "1011");
     }
 
