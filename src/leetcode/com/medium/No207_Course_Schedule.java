@@ -1,7 +1,6 @@
 package leetcode.com.medium;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by jason on 2016/4/4.
@@ -21,45 +20,50 @@ import java.util.Queue;
  * you should also have finished course 1. So it is impossible.
  * ***************************************************
  * Solution：
- * 画成图来还原这道题，就是课程关系中是否含有环
+ * 画成图来还原这道题，就是课程关系中是否含有环,另一个比较简洁的解释是 所有节点的入度都为零
  */
 public class No207_Course_Schedule {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        if (prerequisites == null) return true;
+        // init the adjacency list
+        List<Set> posts = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++)
+            posts.add(new HashSet<>());
 
-        int len = prerequisites.length;
+        //fill the adjacency list
+        for (int i = 0; i < prerequisites.length; i++)
+            // 将所有课程的前提课程存入hashset
+            posts.get(prerequisites[i][1]).add(prerequisites[i][0]);
 
-        if (numCourses == 0 || len == 0) return true;
-
-        // counter for number of prerequisites
-        int[] pCounter = new int[numCourses];
-        for (int i = 0; i < len; i++) {
-            pCounter[prerequisites[i][0]]++;
-        }
-
-        //store courses that have no prerequisites
-        Queue<Integer> queue = new LinkedList<>();
+        //count the pre-courses
+        //算出该课程是多少课程的前提课程
+        int[] preNums = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
-            if (pCounter[i] == 0) queue.add(i);
+            Set set = posts.get(i);
+            Iterator<Integer> it = set.iterator();
+            while (it.hasNext())
+                preNums[it.next()]++;
+
         }
 
-        //number of courses that have no prerequisite
-        int numNoPre = queue.size();
 
+        // remove a non-pre course each time
+        for (int i = 0; i < numCourses; i++) {
+            int j = 0;
+            for (; j < numCourses; j++)
+                if (preNums[j] == 0) break;
 
-        while (!queue.isEmpty()) {
-            int top = queue.remove();
-            for (int i = 0; i < len; i++) {
-                // if a course's prerequisite can be satisfied by a course in queue
-                if (prerequisites[i][1] == top) {
-                    pCounter[prerequisites[i][0]]--;
-                    if (pCounter[prerequisites[i][0]] == 0) {
-                        numNoPre++;
-                        queue.add(prerequisites[i][0]);
-                    }
-                }
-            }
+            //if not a non-pre course
+            if (j == numCourses) return false;
+
+            preNums[j] = -1;
+
+            //decrease course that post the course
+            Set set = posts.get(j);
+            Iterator<Integer> it = set.iterator();
+            while (it.hasNext())
+                preNums[it.next()]--;
         }
-        return numNoPre == numCourses;
+        return true;
+
     }
 }
