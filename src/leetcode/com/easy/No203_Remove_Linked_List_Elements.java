@@ -28,8 +28,8 @@ public class No203_Remove_Linked_List_Elements {
 
 
     public static String getCurrentUTCTimestamp() {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ");
-//        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+//        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
 //
 //        final TimeZone utc = TimeZone.getTimeZone("America/Los_Angeles");
         final TimeZone utc = TimeZone.getTimeZone("PDT");

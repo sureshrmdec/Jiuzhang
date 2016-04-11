@@ -21,8 +21,15 @@ import java.util.*;
  * ***************************************************
  * Solution：
  * 画成图来还原这道题，就是课程关系中是否含有环,另一个比较简洁的解释是 所有节点的入度都为零
+ * 根据这个pair,我们可以得出的结论是:prerequisites[i][1] 是 prerequisites[i][0]的前提课程
  */
 public class No207_Course_Schedule {
+    public static void main(String[] args) {
+        No207_Course_Schedule obj = new No207_Course_Schedule();
+        int[][] courses = new int[2][2];
+//        obj.canFinish(2,)
+    }
+
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         // init the adjacency list
         List<Set> posts = new ArrayList<>();
@@ -31,11 +38,11 @@ public class No207_Course_Schedule {
 
         //fill the adjacency list
         for (int i = 0; i < prerequisites.length; i++)
-            // 将所有课程的前提课程存入hashset
+            // 将前提课程的对应课程存入对应的HashSet,hashSet的size就是这个节点的入度
             posts.get(prerequisites[i][1]).add(prerequisites[i][0]);
 
         //count the pre-courses
-        //算出该课程是多少课程的前提课程
+        //算出该课程有多少前提课程
         int[] preNums = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
             Set set = posts.get(i);
