@@ -1,5 +1,7 @@
 package leetcode.com.easy;
 
+import java.util.Arrays;
+
 /**
  * Created by tclresearchamerica on 4/9/16.
  * Location:
@@ -10,16 +12,34 @@ package leetcode.com.easy;
  * such that nums[i] = nums[j] and the difference between i and j is at most k.
  */
 public class No219_Contains_Duplicate_II {
+
+    public static void main(String[] args) {
+        No219_Contains_Duplicate_II obj = new No219_Contains_Duplicate_II();
+        obj.containsNearbyDuplicate(new int[]{1, 0, 1, 1}, 1);
+    }
+
+
     public boolean containsNearbyDuplicate(int[] nums, int k) {
 
         if (nums == null) return false;
-        for (int i = 0; i < nums.length; i++) {
-            int j = 1;
-            //bug1: should be i <=k
-            //bug2: should be (i+j) < nums.length
-            for (; j <= k && (i + j) < nums.length; j++)
-                //bug3: should be nums[i+j]
-                if (nums[i] == nums[i + j]) return true;
+        int[] numBK = nums.clone();
+        Arrays.sort(numBK);
+        for (int i = 1; i < numBK.length; i++) {
+            int j = 0;
+            while (i < numBK.length && numBK[i] == numBK[i - 1]) {
+                for (; j < nums.length; j++) {
+                    if (nums[j] == numBK[i]) {
+                        //bug1:没有对kk+j进行范围控制
+                        for (int kk = 1; kk <= k && j + kk < nums.length; kk++) {
+                            //bug2:kk->j+kk
+                            if (nums[j + kk] == nums[j]) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                i++;
+            }
         }
 
         return false;
