@@ -28,9 +28,11 @@ public class No223_Rectangle_Area {
         if (B >= H || D <= F) return totalArea;
 
         int rightSide = Math.min(C, G);
-        int leftSide = Math.min(A, E);
+        //bug1: min -> max
+        int leftSide = Math.max(A, E);
         int topSide = Math.min(H, D);
-        int bottomSide = Math.min(F, B);
+        //bug2: min -> max
+        int bottomSide = Math.max(F, B);
         int overlapArea = (rightSide - leftSide) * (topSide - bottomSide);
         return totalArea - overlapArea;
     }
