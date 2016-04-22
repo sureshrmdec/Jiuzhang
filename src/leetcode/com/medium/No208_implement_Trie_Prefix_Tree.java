@@ -8,8 +8,8 @@ package leetcode.com.medium;
  * Description:
  * Implement a trie with insert, search, and startsWith methods.
  * 又称单词查找树，Trie树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计，排序和保存大量的字符串（但不仅限于字符串），
- * 所以经常被搜索引擎系统用于文本词频统计。它的优点是：利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较，
- * 查询效率比哈希树高。
+ * 所以经常被搜索引擎系统用于文本词频统计。
+ * 它的优点是：利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较，查询效率比哈希树高。
  * 它有3个基本性质：
  * 根节点不包含字符，除根节点外每一个节点都只包含一个字符； 从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串；
  * 每个节点的所有子节点包含的字符都不相同。
@@ -31,28 +31,70 @@ public class No208_implement_Trie_Prefix_Tree {
     public static void main(String[] args) {
 
     }
+
+
     private TrieNode root;
 
     public No208_implement_Trie_Prefix_Tree() {
         root = new TrieNode();
     }
 
-    // Inserts a word into the trie.
-    public void insert(String word) {
 
+    public void insert(String word) {
+        TrieNode node = root;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            int index = c - 'a';
+            if (node.arr[index] == null) {
+                TrieNode tmp = new TrieNode();
+                node.arr[index] = tmp;
+                node = tmp;
+            } else {
+                node = node.arr[index];
+            }
+        }
+        node.isEnd = true;
+    }
+
+    public TrieNode searchNode(String s) {
+        TrieNode p = root;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            int index = c - 'a';
+            if (p.arr[index] != null) {
+                p = p.arr[index];
+            } else {
+                return null;
+            }
+        }
+
+        if (p == root)
+            return null;
+
+        return p;
     }
 
     // Returns if the word is in the trie.
     public boolean search(String word) {
-        return false;
+        TrieNode p = searchNode(word);
+        if (p != null && p.isEnd) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     // Returns if there is any word in the trie
     // that starts with the given prefix.
     public boolean startsWith(String prefix) {
-        return false;
+        TrieNode p = searchNode(prefix);
+        if (p == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
-
 // Your Trie object will be instantiated and called as such:
 // Trie trie = new Trie();
 // trie.insert("somestring");
@@ -60,8 +102,11 @@ public class No208_implement_Trie_Prefix_Tree {
 }
 
 class TrieNode {
-    // Initialize your data structure here.
-    public TrieNode() {
+    TrieNode[] arr;
+    boolean isEnd;
 
+    TrieNode() {
+        //26个字母都准备好空间
+        arr = new TrieNode[26];
     }
 }
