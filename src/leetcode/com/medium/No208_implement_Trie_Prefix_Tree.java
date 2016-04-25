@@ -39,61 +39,61 @@ public class No208_implement_Trie_Prefix_Tree {
         root = new TrieNode();
     }
 
-
-    public void insert(String word) {
+    // Adds a word into the data structure.
+    public void addWord(String word) {
         TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
+        for(int i =0;i<word.length();i++){
             char c = word.charAt(i);
-            int index = c - 'a';
-            if (node.arr[index] == null) {
+            int index = c -'a';
+            if(node.arr[index]==null){
                 TrieNode tmp = new TrieNode();
-                node.arr[index] = tmp;
-                node = tmp;
-            } else {
-                node = node.arr[index];
+                node.arr[index]=tmp;
+                node=tmp;
+            }else{
+                node=node.arr[index];
             }
         }
-        node.isEnd = true;
+        node.isLeaf=true;
     }
 
-    public TrieNode searchNode(String s) {
-        TrieNode p = root;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            int index = c - 'a';
-            if (p.arr[index] != null) {
-                p = p.arr[index];
-            } else {
-                return null;
-            }
-        }
-
-        if (p == root)
-            return null;
-
-        return p;
-    }
-
-    // Returns if the word is in the trie.
+    // Returns if the word is in the data structure. A word could
+    // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
-        TrieNode p = searchNode(word);
-        if (p != null && p.isEnd) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return dfsSearch(root,word,0);
     }
 
-    // Returns if there is any word in the trie
-    // that starts with the given prefix.
-    public boolean startsWith(String prefix) {
-        TrieNode p = searchNode(prefix);
-        if (p == null) {
-            return false;
-        } else {
+    private boolean dfsSearch(TrieNode node,String word,int start){
+        if(node.isLeaf&&start==word.length()){
             return true;
         }
+
+        if(start>=word.length()){
+            return false;
+        }
+
+        char c = word.charAt(start);
+
+        if (c=='.'){
+            boolean bRst = false;
+            for ( int j =0;j<26;j++){
+                if(node.arr[j] !=null){
+                    if (dfsSearch(node.arr[j],word,start+1)){
+                        bRst=true;
+                        break;
+                    }
+                }
+            }
+            if(bRst)
+                return true;
+        }else{
+            int index = c-'a';
+            if(node.arr[index] !=null){
+                return dfsSearch(node.arr[index],word,start+1);
+            }else{
+                return false;
+            }
+        }
+        return false;
     }
 // Your Trie object will be instantiated and called as such:
 // Trie trie = new Trie();
@@ -103,7 +103,7 @@ public class No208_implement_Trie_Prefix_Tree {
 
 class TrieNode {
     TrieNode[] arr;
-    boolean isEnd;
+    boolean isLeaf;
 
     TrieNode() {
         //26个字母都准备好空间
