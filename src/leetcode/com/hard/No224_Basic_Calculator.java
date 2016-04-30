@@ -21,9 +21,9 @@ package leetcode.com.hard;
  */
 public class No224_Basic_Calculator {
     public int calculate(String s) {
-        if (s == null) return 0;
-        String temp = s.replaceAll(" ", "");
-        if (temp.length() == 0) return 0;
-
+        if (s==null)    return 0;
+        String temp= s.replaceAll(" ","");
+        if (temp.length()==0)   return 0;
+        return 1;
     }
 }
