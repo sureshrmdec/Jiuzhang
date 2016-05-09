@@ -33,9 +33,7 @@ package leetcode.com.medium;
  * Solution:
  * https://leetcode.com/discuss/101075/1ms-java-solution-beats-96%25-two-tricks-stop-search-early-stage
  * 先对String进行数组化,再使用DFS的方式,对数字进行深度挖掘,数字的处理也是根据数组的循环来进行计算的.
- *
  * ****************************************************
- *
  */
 public class No306_Additive_Number {
     public static void main(String[] args) {
