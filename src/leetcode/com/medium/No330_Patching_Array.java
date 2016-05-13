@@ -1,5 +1,7 @@
 package leetcode.com.medium;
 
+import java.util.Arrays;
+
 /**
  * Created by tclresearchamerica on 5/10/16.
  * ****************************************************
@@ -49,8 +51,12 @@ package leetcode.com.medium;
  * 可以组成5，而下一个数字11，加一起能组成16，所以有了数组中的11，我们此时能表示的范围扩大到[0, 27)，但我们没法表示27，
  * 因为30太大了，所以此时我们给数组中加入一个27，那么现在能表示的范围是[0, 54)，应经满足要求了，我们总共添加了两个数8和27，所以返回2即可。
  * ****************************************************
+ * 事后诸葛亮:
+ * 思路被题目弄混乱了,其实就是如果把1~n-1,放到数轴上,向n的方向做平移,就会明白,他可以表示的范围就是1~2n-1,所以可以尝试2倍的方式进行接近
+ * <p>
+ * ****************************************************
  * 点评:
- *
+ * <p>
  * ****************************************************
  */
 public class No330_Patching_Array {
@@ -63,17 +69,16 @@ public class No330_Patching_Array {
     }
 
     public int minPatches(int[] nums, int n) {
-        int count = 0, i = 0;
-        long miss = 1;
+        int miss = 1, res = 0, i = 0;
         while (miss <= n) {
             if (i < nums.length && nums[i] <= miss) {
                 miss += nums[i++];
             } else {
                 miss += miss;
-                count++;
+                ++res;
             }
         }
-        return count;
+        return res;
 
     }
 
