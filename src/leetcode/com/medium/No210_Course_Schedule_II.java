@@ -83,7 +83,7 @@ public class No210_Course_Schedule_II {
             if (degree[i] == 0) queue.offer(i);
         }
 
-        int size = queue.size();
+
         int index = 0;
         while (!queue.isEmpty()) {
             int preCourse = queue.poll();
