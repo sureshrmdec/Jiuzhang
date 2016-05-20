@@ -2,6 +2,7 @@ package leetcode.com.medium;
 
 import leetcode.com.util.TreeNode;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
@@ -26,40 +27,27 @@ import java.util.PriorityQueue;
  * 是否可以用树本身的特性来完结这个问题呢?
  * 其实可以用一个今天上午用到的priorityQueue来完成,
  * ****************************************************
+ * Beats:7.8,但是我可以保证完成follow的问题,每次插一个元素的时候,同时维护这个queue就好了
  */
 public class No230_Kth_Smallest_Element_in_a_BST {
     public int kthSmallest(TreeNode root, int k) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>(k);
+        PriorityQueue<Integer> queue = new PriorityQueue<>(k, Collections.reverseOrder());
 
         kthHelper(queue, root, k);
-        Iterator<Integer> it = queue.iterator();
-        int result = 0;
-        while (it.hasNext()) {
-            result = it.next();
-        }
-        return result;
+        return queue.peek();
     }
 
     private void kthHelper(PriorityQueue<Integer> queue, TreeNode root, int k) {
-        if (root == null) return;
-        boolean minFlg = false;
-        if (root.left == null && root.right == null && queue.size() == 0) {
-            //只有最小节点满足这个要求
-            queue.add(root.val);
 
-            minFlg = true;
-        }
-        if (k == queue.size()) return;
+        if (root == null || queue.size() >= k) return;
+
         if (root.left != null) kthHelper(queue, root.left, k);
-        if (minFlg == false) {
+        if (queue.size() >= k) return;
 
-            queue.add(root.val);
-            if (k == queue.size()) {
-                return;
-            }
-        }
+        queue.add(root.val);
 
         if (root.right != null) kthHelper(queue, root.right, k);
     }
-
 }
+
+
