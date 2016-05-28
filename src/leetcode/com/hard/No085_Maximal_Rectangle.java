@@ -11,6 +11,9 @@ import java.util.Stack;
  * Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing all ones and return its area.
  * *************************************************
  * Solution:
+ * *************************************************
+ * Beat:8%
+ * *************************************************
  */
 public class No085_Maximal_Rectangle {
     public int maximalRectangle(char[][] matrix) {
