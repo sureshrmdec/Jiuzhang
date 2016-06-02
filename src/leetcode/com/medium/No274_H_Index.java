@@ -29,19 +29,26 @@ import java.util.Arrays;
  * <p>
  * <p>
  * ******************************************
+ * Beat:50%
+ * ******************************************
  */
 public class No274_H_Index {
     public int hIndex(int[] citations) {
-        int h = 0;
-        if (citations == null) return h;
-
-        Arrays.sort(citations);
-
-        for (int i = citations.length - 1; i >= 0 && citations[i] >= citations.length - i; i--) {
-            h = citations.length - i;
+        int n = citations.length;
+        int[] hindex = new int[n + 1];
+        for(int val: citations){
+            if(val >= n) hindex[n]++;
+            else hindex[val]++;
         }
-
-        return h;
+        int sum = 0;
+        for(int i = n; i > 0; i--){
+            sum += hindex[i];
+            if(i <= sum){
+                sum = Math.max(i, sum - hindex[i]);
+                break;
+            }
+        }
+        return sum;
 
     }
 }
