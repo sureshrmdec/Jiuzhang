@@ -13,6 +13,12 @@ package leetcode.com.pickup1.hard;
  * A sudoku puzzle...
  * ...and its solution numbers marked in red.
  * *******************************************
+ * In hindsight:
+ * 基本的逻辑没有问题,细节上面会有些瑕疵
+ * 1.数字转字符:数字(0开始)+49
+ * 2.字符转数字:字符('0'开始)-49
+ * 3.因为数组下标写错了,所以debug进行了30分钟,完全消耗掉了,第二次做题的优势
+ * 4.结束条件可以选一个全局变量,而不一定要用方法的返回值,这样代码会变得清晰许多isFound
  * *******************************************
  * *******************************************
  * *******************************************
@@ -59,6 +65,7 @@ public class No037_Sudoku_Solver {
     }
 
     public void backTracking(char[][] board, int row, int col) {
+        //bug5:结束的下标该是9 而非row & col 为8
         if (row == 9) {
             isFound = true;
             return;
@@ -69,7 +76,9 @@ public class No037_Sudoku_Solver {
             //bug3:i <=9  --> i < 9
             for (int i = 0; i < 9; i++) {
                 //bug4:col的下标和rowvisit的下标一样,copy的时候,没有修改
-                if (rowVisit[row][i] == false && colVisit[col][i] == false && gridVisit[index][i] == false) {
+                if (rowVisit[row][i] == false &&
+                        colVisit[col][i] == false &&
+                        gridVisit[index][i] == false) {
                     rowVisit[row][i] = true;
                     colVisit[col][i] = true;
                     gridVisit[index][i] = true;
@@ -84,6 +93,7 @@ public class No037_Sudoku_Solver {
                     if (isFound) return;
                     board[row][col] = '.';
                     rowVisit[row][i] = false;
+                    //bug4:数组的下标 标错... 导致debug时间长达30分钟
                     colVisit[col][i] = false;
                     gridVisit[index][i] = false;
                 }
