@@ -17,6 +17,11 @@ import java.util.List;
  * Solutions:
  * Recursion: 1 list to store the distinct number, if the list contains all the number, add then put the values of the list into result
  * Non_recursion:
+ * *****************************************************
+ * Beats: 22%
+ * *****************************************************
+ * *****************************************************
+ * *****************************************************
  */
 public class No046_Permutations_I_Recursion {
     public static void main(String[] args) {

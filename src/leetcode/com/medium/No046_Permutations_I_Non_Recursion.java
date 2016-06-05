@@ -1,6 +1,7 @@
 package leetcode.com.medium;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jason on 2016/1/10.
@@ -12,7 +13,7 @@ public class No046_Permutations_I_Non_Recursion {
         nums.add(1);
         nums.add(2);
         nums.add(3);
-        no046.permute(nums);
+//        no046.permute(nums);
 
     }
 
@@ -36,14 +37,14 @@ public class No046_Permutations_I_Non_Recursion {
      * The thoughts of design should be memorized.
      *
      */
-    public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> nums) {
-        ArrayList<ArrayList<Integer>> permutations
-                = new ArrayList<ArrayList<Integer>>();
-        if (nums == null || nums.size() == 0) {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> permutations
+                = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
             return permutations;
         }
 
-        int n = nums.size();
+        int n = nums.length;
         ArrayList<Integer> stack = new ArrayList<Integer>();
 
         stack.add(-1);
@@ -74,7 +75,7 @@ public class No046_Permutations_I_Non_Recursion {
             // copy to permutations set
             ArrayList<Integer> permutation = new ArrayList<Integer>();
             for (int i = 0; i < n; i++) {
-                permutation.add(nums.get(stack.get(i)));
+                permutation.add(nums[stack.get(i)]);
             }
             permutations.add(permutation);
         }
