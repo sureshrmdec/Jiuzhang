@@ -27,7 +27,7 @@ public class No019_Remove_Nth_Node_From_End_of_List {
             head = head.next;
             preNode = preNode.next;
         }
-        preNode.next =preNode.next.next;
+        preNode.next = preNode.next.next;
         return dummy.next;
     }
 
