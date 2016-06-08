@@ -73,7 +73,7 @@ public class No078_Subsets {
     }
 
     public void helper(List<List<Integer>> result, List<Integer> solution, int[] nums, int start) {
-        result.add(new ArrayList<Integer>(solution));
+        result.add(new ArrayList<>(solution));
 
         for (int i = start; i < nums.length; i++) {
             solution.add(nums[i]);
