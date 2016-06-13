@@ -34,6 +34,10 @@ import java.util.Stack;
  */
 public class No150_Evaluate_Reverse_Polish_Notation {
 
+    public static void main(String[] args) {
+        System.out.println(Integer.toBinaryString(Integer.MAX_VALUE));
+        System.out.println(Integer.toBinaryString(Integer.MAX_VALUE).length());
+    }
     public int calc(int op1, int op2, String operator) {
         switch (operator) {
             case "/":
