@@ -17,6 +17,12 @@ package leetcode.com.hard;
  * max = Math.max(max, height[i]),这个即是计算某点两侧高于改点的最小值，然后选取最小值进行计算面积
  */
 public class No042_Trapping_Rain_Water {
+    public static void main(String[] args) {
+        No042_Trapping_Rain_Water obj = new No042_Trapping_Rain_Water();
+        int[] arr = new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        obj.trap(arr);
+    }
+
     public int trap(int[] height) {
         if (height == null || height.length == 0) {
             return 0;
@@ -30,6 +36,7 @@ public class No042_Trapping_Rain_Water {
             maxHeight[i + 1] = Math.max(maxHeight[i], height[i]);
         }
 
+        //max右侧的最高高度
         int max = 0;
         int area = 0;
         for (int i = height.length - 1; i >= 0; i--) {

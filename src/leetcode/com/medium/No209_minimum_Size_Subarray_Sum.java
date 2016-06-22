@@ -18,7 +18,7 @@ import java.util.Map;
  * 两个游标操作,一个不断累加元素和直到循环完毕,或是sum超出s,如果内循环的sum一直小于s,则证明无果,直接返回
  */
 public class No209_minimum_Size_Subarray_Sum {
-    public int minSubArrayLen(int s, int[] nums) {
+    public int minSubArrayLen_TLE(int s, int[] nums) {
         int i, j = 0, sum = 0;
         int ans = Integer.MAX_VALUE;
         for (i = 0; i < nums.length; i++) {
