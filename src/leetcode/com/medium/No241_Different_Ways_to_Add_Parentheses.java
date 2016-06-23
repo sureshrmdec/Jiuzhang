@@ -77,7 +77,7 @@ public class No241_Different_Ways_to_Add_Parentheses {
 
         }
 
-        //如果输入的是最后一个数字的话
+        //如果输入的是一个数字的话
         if (res.isEmpty())
             res.add(Integer.parseInt((input)));
         map.put(input, res);
