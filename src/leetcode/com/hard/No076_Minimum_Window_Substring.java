@@ -50,9 +50,9 @@ public class No076_Minimum_Window_Substring {
         int[] targetHash = new int[256];
 
         initTargetHash(targetHash, target);
-        int j = 0;
-        int i = 0;
-        for (i = 0; i < source.length(); i++) {
+//        int j = 0;
+//        int i = 0;
+        for (int i = 0, j = 0; i < source.length(); i++) {
             while (!valid(sourceHash, targetHash) && j < source.length()) {
                 sourceHash[source.charAt(j)]++;
                 if (j < source.length())
