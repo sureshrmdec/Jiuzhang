@@ -26,9 +26,21 @@ package leetcode.com.pickup1.easy;
  * ****************************************************
  * ****************************************************
  */
-public class No058_Length_of_Last_Word
+public class No058_Length_of_Last_Word{
 
         public int lengthOfLastWord(String s) {
+            if (s == null || s.length() == 0) return 0;
+
+            s=s.trim();
+            StringBuffer sb = new StringBuffer();
+            for (int i = s.length() - 1; i >= 0; i--) {
+                if (s.charAt(i) == ' ') {
+                    break;
+                } else {
+                    sb.append(s.charAt(i));
+                }
+            }
+            return sb.length();
 
         }
 }
