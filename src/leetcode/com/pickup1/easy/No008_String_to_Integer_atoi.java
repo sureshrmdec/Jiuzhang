@@ -1,7 +1,5 @@
 package leetcode.com.pickup1.easy;
 
-import leetcode.com.hard.No056_Merge_Intervals;
-
 /**
  * Created by tclresearchamerica on 6/25/16.
  * ****************************************************

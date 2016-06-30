@@ -1,7 +1,5 @@
 package myjava.com.collection;
 
-import leetcode.com.hard.No056_Merge_Intervals;
-
 /**
  * Created by tclresearchamerica on 5/29/16.
  * reference:
