@@ -1,5 +1,7 @@
 package leetcode.com.hard;
 
+import leetcode.com.util.Interval;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,18 +45,5 @@ public class No057_Insert_Interval {
         return result;
     }
 
-    public class Interval {
-        int start;
-        int end;
 
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
-        Interval(int s, int e) {
-            start = s;
-            end = e;
-        }
-    }
 }

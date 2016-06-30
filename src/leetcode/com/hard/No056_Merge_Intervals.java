@@ -1,5 +1,7 @@
 package leetcode.com.hard;
 
+import leetcode.com.util.Interval;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,15 +29,15 @@ public class No056_Merge_Intervals {
         }
         List<Interval> result = new ArrayList<>();
 
-        Collections.sort(intervals,new IntervalComparator());
+        Collections.sort(intervals, new IntervalComparator());
         Interval last = intervals.get(0);
-        for (int i =1;i<intervals.size();i++){
+        for (int i = 1; i < intervals.size(); i++) {
             Interval curt = intervals.get(i);
-            if (curt.start <= last.end){
-                last.end = Math.max(last.end,curt.end);
-            }else {
+            if (curt.start <= last.end) {
+                last.end = Math.max(last.end, curt.end);
+            } else {
                 result.add(last);
-                last=curt;
+                last = curt;
             }
         }
         result.add(last);
@@ -50,18 +52,4 @@ public class No056_Merge_Intervals {
         }
     }
 
-    public class Interval {
-        int start;
-        int end;
-
-        Interval() {
-            start = 0;
-            end = 0;
-        }
-
-        Interval(int s, int e) {
-            start = s;
-            end = e;
-        }
-    }
 }
