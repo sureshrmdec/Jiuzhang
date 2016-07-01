@@ -1,5 +1,6 @@
 package leetcode.com.pickup1.hard;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +53,8 @@ import java.util.List;
  */
 public class No218_The_Skyline_Problem {
     public List<int[]> getSkyline(int[][] buildings) {
-        return null;
+        List<int[]> result = new ArrayList<>();
+
+        return result;
     }
 }
