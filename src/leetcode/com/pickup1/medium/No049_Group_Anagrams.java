@@ -42,7 +42,9 @@ import java.util.*;
 public class No049_Group_Anagrams {
     public static void main(String[] args) {
         No049_Group_Anagrams obj = new No049_Group_Anagrams();
-        obj.groupAnagrams(new String[]{"adf"});
+        List<List<String>> result = obj.groupAnagrams(new String[]{"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafoobar"});
+        System.out.print(result);
     }
 
     public List<List<String>> groupAnagrams(String[] strs) {
@@ -57,7 +59,7 @@ public class No049_Group_Anagrams {
         for (String s : strs) {
             int index = 1;
             for (char c : s.toCharArray()) {
-                index *= primeArr[c - 'a'];
+                index *= primeArr[c - 'a'] % Integer.MAX_VALUE;
             }
             if (!hashMap.containsKey(index)) {
 
@@ -70,6 +72,29 @@ public class No049_Group_Anagrams {
         for (List<String> list : hashMap.values()) {
             result.add(list);
         }
+        return result;
+    }
+
+    public List<List<String>> groupAnagrams_euro_prime(String[] strs) {
+        List<List<String>> result = new ArrayList<>();
+        HashMap<Integer, List<String>> hashMap = new HashMap<>();
+        for (String s : strs) {
+            int index = 1;
+            for (char c : s.toCharArray()) {
+                int n = c - 'a' + 1;
+                //opt:Euro Prime,不必提前定义质数数组
+                index *= (n * n + n + 41) % Integer.MAX_VALUE;
+            }
+            if (!hashMap.containsKey(index)) {
+
+                hashMap.put(index, new ArrayList<>());
+
+            }
+            hashMap.get(index).add(s);
+        }
+
+        //opt:用addAll 避免循环
+        result.addAll(hashMap.values());
         return result;
     }
 }

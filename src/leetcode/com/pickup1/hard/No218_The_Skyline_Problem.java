@@ -1,7 +1,6 @@
 package leetcode.com.pickup1.hard;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by tclresearchamerica on 7/1/16.
@@ -41,6 +40,8 @@ import java.util.List;
  * [7 5], [11 5], [12 7]...] is not acceptable; the three lines of height 5 should be merged into one in the final
  * output as such: [...[2 3], [4 5], [12 7], ...]
  * ****************************************************
+ * Thoughts:
+ * 思路依然没有掌握的很清楚
  * ****************************************************
  * ****************************************************
  * ****************************************************
@@ -54,7 +55,40 @@ import java.util.List;
 public class No218_The_Skyline_Problem {
     public List<int[]> getSkyline(int[][] buildings) {
         List<int[]> result = new ArrayList<>();
+        Queue<Integer> pQueue = new PriorityQueue<>(Collections.reverseOrder());
 
+        List<int[]> lineList = new ArrayList<>();
+        for (int[] build : buildings) {
+            lineList.add(new int[]{build[0], -build[2]});
+            lineList.add(new int[]{build[1], build[2]});
+        }
+
+        Collections.sort(lineList, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                // 根据横坐标对列表排序，相同横坐标的点纵坐标小的排在前面
+                if (o1[0] != o2[0]) {
+                    return o1[0] - o2[0];
+                } else {
+                    return o1[1] - o2[1];
+                }
+            }
+        });
+
+        pQueue.offer(0);
+        int prev = 0;
+        for (int[] line : lineList) {
+            if (line[1] < 0) {
+                pQueue.offer(-line[1]);
+            } else {
+                pQueue.remove(line[1]);
+            }
+            int cur = pQueue.peek();
+            if (cur != prev) {
+                result.add(new int[]{line[0], cur});
+                prev = cur;
+            }
+        }
         return result;
     }
 }

@@ -22,6 +22,11 @@ package leetcode.com.easy.part2;
  */
 
 public class No202_Happy_Number {
+    public static void main(String[] args) {
+        No202_Happy_Number obj = new No202_Happy_Number();
+        obj.isHappy(1111111);
+    }
+
     public boolean isHappy(int n) {
         boolean result = false;
         int sum;
