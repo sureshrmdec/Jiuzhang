@@ -18,13 +18,33 @@ package leetcode.com.pickup1.easy;
  * find the first bad version. You should minimize the number of calls to the API.
  * ****************************************************
  * Thoughts:
- * 1.二分法吗?
+ * 1.二分法吗?是的
+ * 2.在看题目的时候,漏看了一个可以call的函数isBadVersion,这个函数可以被call
+ * 3.需要注意的是2分法中,避免(start+end)overflow的方法,就是start+(end-start)/2
+ * Time: 20mins
+ * Beat: 53%
+ * Bug: 1
  * ****************************************************
  * ****************************************************
  * ****************************************************
  */
 public class No278_First_Bad_Version {
     public int firstBadVersion(int n) {
+        int start = 1, end = n;
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (!isBadVersion(mid)) {
+                //bug1:start要+1,否则会无限循环呢
+                start = mid + 1;
+            } else {
+                end = mid;
 
+            }
+        }
+        return start;
+    }
+
+    boolean isBadVersion(int a) {
+        return false;
     }
 }
