@@ -64,7 +64,6 @@ public class No056_Merge_Intervals {
         Interval prev = intervals.get(0);
         for (int i = 1; i < intervals.size(); i++) {
             Interval curt = intervals.get(i);
-            System.out.println(curt.start);
             if (prev.end >= curt.start) {
                 prev.end = Math.max(prev.end, curt.end);
             } else {
