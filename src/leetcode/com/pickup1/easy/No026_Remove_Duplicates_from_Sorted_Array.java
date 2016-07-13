@@ -19,8 +19,13 @@ package leetcode.com.pickup1.easy;
  * matter what you leave beyond the new length
  * ****************************************************
  * Thoughts:
- * <p>
+ * 完全没有思路,看了别人的答案,才知道如何搞
+ * Time:25mins
+ * Beat: 50%
+ * Bug:1
  * ****************************************************
+ * Hindsight;
+ * 将与前一元素不同的元素,按顺序排列,并返回
  * ****************************************************
  * ****************************************************
  * ****************************************************
@@ -34,8 +39,10 @@ package leetcode.com.pickup1.easy;
  */
 public class No026_Remove_Duplicates_from_Sorted_Array {
     public int removeDuplicates(int[] nums) {
-        int result = 0;
-
-        return result;
+        if (nums.length < 2) return nums.length;
+        int id = 1;
+        for (int i = 1; i < nums.length; ++i)
+            if (nums[i] != nums[i - 1]) nums[id++] = nums[i];
+        return id;
     }
 }
