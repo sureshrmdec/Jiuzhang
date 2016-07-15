@@ -17,7 +17,7 @@ import leetcode.com.util.ListNode;
  * Solutions:
  * 将list分为独立的两个list，然后再链接在一起
  */
-public class No085_Partition_List {
+public class No086_Partition_List {
     public ListNode partition(ListNode head, int x) {
         ListNode leftDummy = new ListNode(0);
         ListNode rightDummy = new ListNode(0);
