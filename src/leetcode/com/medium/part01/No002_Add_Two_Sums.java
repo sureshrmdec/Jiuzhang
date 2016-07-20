@@ -39,12 +39,14 @@ public class No002_Add_Two_Sums {
             int sum = l1.val + carry;
             carry = sum / 10;
             tail.next = new ListNode(sum % 10);
+            tail = tail.next;
             l1 = l1.next;
         }
         while (l2 != null) {
             int sum = l2.val + carry;
             carry = sum / 10;
             tail.next = new ListNode(sum % 10);
+            tail = tail.next;
             l2 = l2.next;
         }
         if (carry > 0) {
