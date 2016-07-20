@@ -23,7 +23,7 @@ public class No046_Permutations_I_Non_Recursion {
      * **************************************************
      * Solutions:
      * the index of the element in the array is stored in the stack
-     * -- it's a good way to use the index of the lement in the array
+     * -- it's a good way to use the index of the element in the array
      * Stack的初期值设置成-1，这样保证在循环逻辑的第一步中，取出最后的元素last（-1），
      * 在循环内部设置next flag 为 -1，
      * 在第一个for循环中i的起始值是last+1，保证之前处理过的元素不会在本次循环中被放到stack中

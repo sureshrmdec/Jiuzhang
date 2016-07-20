@@ -11,6 +11,19 @@ import java.util.List;
  * Location:
  * https://leetcode.com/problems/permutations/
  * ****************************************************
+ * Description:
+ * Given a collection of distinct numbers, return all possible permutations.
+ * For example,
+ * [1,2,3] have the following permutations:
+ * [
+ * [1,2,3],
+ * [1,3,2],
+ * [2,1,3],
+ * [2,3,1],
+ * [3,1,2],
+ * [3,2,1]
+ * ]
+ * ****************************************************
  * Thought:
  * 依然对这个排列的算法没有掌握...
  * 想不出解决方案,想来这个是我的一个弱点
