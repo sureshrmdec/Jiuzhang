@@ -1,4 +1,4 @@
-package leetcode.com.medium.part21;
+package leetcode.com.medium.part22;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +23,9 @@ import java.util.List;
  * ------------>上面这个算法导致运算超时... 时间复杂度太高啦
  * *********************************************
  */
-public class No246_Ugly_Nubmber_II {
+public class No264_Ugly_Nubmber_II {
     public static void main(String[] args) {
-        No246_Ugly_Nubmber_II obj = new No246_Ugly_Nubmber_II();
+        No264_Ugly_Nubmber_II obj = new No264_Ugly_Nubmber_II();
         obj.nthUglyNumber(11);
     }
 
