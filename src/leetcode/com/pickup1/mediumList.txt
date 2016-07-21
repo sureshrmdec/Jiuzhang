@@ -8,5 +8,5 @@
 
 Easy:
 204:判断prime的方法,其实并没有理解明白,需要看个视屏消化下: https://www.youtube.com/watch?v=eKp56OLhoQs
-
+169:巧妙的想法,不需要更多复杂的数据结构
 Merge Sort:148
