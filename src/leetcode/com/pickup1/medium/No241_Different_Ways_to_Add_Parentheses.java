@@ -3,6 +3,7 @@ package leetcode.com.pickup1.medium;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tclresearchamerica on 6/23/16.
@@ -34,7 +35,13 @@ import java.util.List;
  * 因为用到了hashmap所以没有什么问题
  * ****************************************************
  * Hindsight:
- * 不知道这类问题如何解决,所以一直无法破解
+ * 1.不知道这类问题如何解决,所以一直无法破解
+ * 07/23 add
+ * 2.看了答案,才意识到这个是一个组合问题,题主用括号混淆了视听,可以根据题主提供的example推断出来。
+ * 3.网络答案很巧妙,他把String串存到了Map中,因为每次都是根据计算符来进行的处理,所以经过过滤后,数值自然就浮现出来了
+ * 4.这次是在网页上直接写的答案,虽然算法本身没有问题,但是,很多依然有很多编译的错误,有些事方法名字写错了(漏写关键字,拼错大小写),
+ * 有些是忘了给变量加上属性的,还有些是变量类型写错了。
+ * 5.基本上就认为这道题基本完结啦
  * ****************************************************
  * ****************************************************
  * ****************************************************
@@ -48,36 +55,36 @@ import java.util.List;
  */
 public class No241_Different_Ways_to_Add_Parentheses {
     public List<Integer> diffWaysToCompute(String input) {
-        List<Integer> result = new ArrayList<>();
-        return result;
+        if (input == null) return null;
+
+        //bug3:map中value的类型该是List<Integer>
+        Map<String, List<Integer>> map = new HashMap<>();
+        return helper(input, map);
     }
 
-    HashMap<String, List<Integer>> hashMap = new HashMap<>();
+    //bug1:忘记给参数加上<>的参数类型了
+    private List<Integer> helper(String input, Map<String, List<Integer>> map) {
+        //bug2:判断map中有key的方法是containsKey(),而不是contains();
+        if (map.containsKey(input)) return map.get(input);
 
-    public List<Integer> diffWaysToCompute_copy(String input) {
-        List<Integer> result = new ArrayList<>();
-
-        if (hashMap.containsKey(input)) return hashMap.get(input);
-
+        List<Integer> rst = new ArrayList<>();
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
             if (c == '+' || c == '-' || c == '*') {
-                List<Integer> left = diffWaysToCompute(input.substring(0, i));
-                List<Integer> right = diffWaysToCompute(input.substring(i + 1));
+                //bug4:substring()方法都是小写字符，不需要任何大写字符
+                //bug5：没有给list加上<Integer>,后面的循环处理会出现问题
+                List<Integer> left = helper(input.substring(0, i), map);//end index
+                List<Integer> right = helper(input.substring(i + 1), map);
                 for (int v1 : left) {
                     for (int v2 : right) {
-                        if (c == '+') result.add(v1 + v2);
-                        if (c == '-') result.add(v1 - v2);
-                        if (c == '*') result.add(v1 * v2);
+                        if (c == '+') rst.add(v1 + v2);
+                        if (c == '-') rst.add(v1 - v2);
+                        if (c == '*') rst.add(v1 * v2);
                     }
                 }
             }
         }
-
-        if (result.isEmpty()) result.add(Integer.parseInt(input));
-        hashMap.put(input, result);
-
-        return result;
-
+        if (rst.isEmpty()) rst.add(Integer.valueOf(input));
+        return rst;
     }
 }
