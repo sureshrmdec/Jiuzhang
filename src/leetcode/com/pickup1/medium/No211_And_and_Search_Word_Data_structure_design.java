@@ -40,7 +40,7 @@ package leetcode.com.pickup1.medium;
 public class No211_And_and_Search_Word_Data_structure_design {
 }
 
-public class WordDictionary {
+class WordDictionary {
 
     // Adds a word into the data structure.
     public void addWord(String word) {
