@@ -1,4 +1,4 @@
-package leetcode.com.pickup1;
+package leetcode.com.pickup1.easy;
 
 /**
  * Created by jason on 2016/7/18.
