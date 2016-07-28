@@ -27,12 +27,11 @@ import java.util.Arrays;
  * 一旦数字有相等的问题,就会不好用了
  * 2.排序后,找到中位数的开始和结束index,
  * ****************************************************
- * <
  * ****************************************************
  * ****************************************************
  */
 public class No324_Wiggle_Sort_II {
-    public void wiggleSort(int[] nums) {
+    public void wiggleSort_wrong(int[] nums) {
         if (nums == null || nums.length <= 1) return;
         Arrays.sort(nums);
         int mid = nums.length / 2;
