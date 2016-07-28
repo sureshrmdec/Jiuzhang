@@ -38,6 +38,11 @@ package leetcode.com.medium;
  * ****************************************************
  */
 public class No365_Water_and_Jug_Problem {
+    public static void main(String[] args) {
+        No365_Water_and_Jug_Problem obj = new No365_Water_and_Jug_Problem();
+        A abc = new A();
+        System.out.println(obj.GCD(4,7));
+    }
     public boolean canMeasureWater(int x, int y, int z) {
         //limit brought by the statement that water is finallly in one or both buckets
         if (x + y < z) return false;
@@ -56,4 +61,8 @@ public class No365_Water_and_Jug_Problem {
         }
         return a;
     }
+}
+
+class A{
+
 }
