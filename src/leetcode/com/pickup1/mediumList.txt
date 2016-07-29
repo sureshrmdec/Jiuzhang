@@ -10,7 +10,7 @@ Easy:
 204:判断prime的方法,其实并没有理解明白,需要看个视屏消化下: https://www.youtube.com/watch?v=eKp56OLhoQs
 169:巧妙的想法,不需要更多复杂的数据结构
 Merge Sort:148
-Trie Tree: 208,211------>Understand is necessary
+Trie Tree: 208,211------>Understand is necessary,202(hard)
 二叉搜索树(TreeSet):220:可以求大于某个值的最小元素,可以求小于某个元素的最大值------>TODO
 Bucket:220,需要理解bucket元素中的相邻元素间的关系是什么------>TODO
 BST:116,173
@@ -20,3 +20,4 @@ DP:174
 BSF:130
 图:133(宽搜,map+list)
 杨辉三角:No.119
+对称数字
