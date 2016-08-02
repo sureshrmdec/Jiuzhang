@@ -2,6 +2,7 @@ package leetcode.com.medium;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 
 /**
@@ -50,7 +51,14 @@ import java.util.List;
  * <p>
  * <p>
  * ****************************************************
+ * Hindsight:
+ * 1.首先是,不太会做
+ * 2.其次是,看了答案后,有了思路,解法可以建立起来啦
+ * 3.
  * ****************************************************
+ * Time: 120 mins
+ * Beat: 87%
+ * Bug: -
  * ****************************************************
  * ****************************************************
  * ****************************************************
@@ -60,19 +68,24 @@ import java.util.List;
 public class No368_Largest_Divisible_Subset {
 
     public List<Integer> largestDivisibleSubset(int[] nums) {
-        if (nums.length == 0)
-            return new ArrayList<Integer>();
-        //nums has at least one element
+        List<Integer> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) return result;
+
         int n = nums.length;
-        Arrays.sort(nums);
         int[] dp = new int[n];
-        Arrays.fill(dp, 1);
         int[] parent = new int[n];
-        Arrays.fill(parent, -1);//当parent数组中某数为-1时，表示这个数自己是一个集合
+        Arrays.sort(nums);
+        //fill with dp
+        Arrays.fill(dp, 1);
+        //if the value of parent is -1, then itself is a set
+        Arrays.fill(parent, -1);
+
         int max = 1, max_index = -1;
-        for (int i = 1; i < n; i++) {   //calculate dp[i]
-            for (int j = i - 1; j >= 0; j--) {  //i > j
-                if (nums[i] % nums[j] == 0 && dp[i] < dp[j] + 1) {    //positive distinct numbers in num
+        for (int i = 1; i < n; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                //dp[i] < dp[j] + 1条件是必须的,保证了集合最大化
+                if (nums[i] % nums[j] == 0 && dp[i] < dp[j] + 1) {
+                    // dp[j] + 1 直接决定了上面循环中的条件
                     dp[i] = dp[j] + 1;
                     parent[i] = j;
                     if (dp[i] > max) {
@@ -82,13 +95,13 @@ public class No368_Largest_Divisible_Subset {
                 }
             }
         }
-        return genResult(nums, parent, max_index);
+        return getReslt(nums, parent, max_index);
     }
 
-    public List<Integer> genResult(int[] nums, int[] parent, int max_index) {
+    private List<Integer> getReslt(int[] nums, int[] parent, int max_index) {
         List<Integer> result = new ArrayList<>();
-        if (max_index == -1) {  //每个数都是单独成集合，都不能合并
-            result.add(nums[0]);    //随便输出一个数，这里选第一个
+        if (max_index == -1) {
+            result.add(nums[0]);
             return result;
         }
         int iter = max_index;
@@ -98,4 +111,6 @@ public class No368_Largest_Divisible_Subset {
         }
         return result;
     }
+
+
 }
