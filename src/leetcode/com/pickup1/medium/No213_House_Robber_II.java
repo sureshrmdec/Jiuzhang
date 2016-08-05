@@ -45,16 +45,19 @@ public class No213_House_Robber_II {
         No213_House_Robber_II obj = new No213_House_Robber_II();
         obj.rob(new int[]{4, 1, 2, 7, 5, 3, 1});
     }
+
     public int rob(int[] nums) {
         if (nums.length == 1) return nums[0];
         return Math.max(rob(nums, 0, nums.length - 2), rob(nums, 1, nums.length - 1));
     }
+
     private int rob(int[] num, int lo, int hi) {
         int include = 0, exclude = 0;
         for (int j = lo; j <= hi; j++) {
             int i = include, e = exclude;
             include = e + num[j];
             exclude = Math.max(e, i);
+            System.out.println("num[" + j + "]:" + num[j] + ":include:" + include + " exclude:" + exclude + " e:" + e + " i:" + i);
         }
         return Math.max(include, exclude);
     }
@@ -78,7 +81,7 @@ public class No213_House_Robber_II {
             dp1[i + 1] = Math.max(dp1[i], dp1[i - 1] + nums[i]);
 
         }
-        return Math.max(dp0[nums.length],dp1[nums.length]);
+        return Math.max(dp0[nums.length], dp1[nums.length]);
 //        dp0[1] = nums[1];
         //bug1:因为数组头尾不可相见,所以不能用num[2]+num[0]-->万一有3个元素就不对啦!!!
 //        dp0[2] = nums[2]+nums[0];
