@@ -35,6 +35,8 @@ import java.util.*;
  * 2.根据来自https://segmentfault.com/a/1190000002567124的解释,还是先要构筑一个根据BFS的达成的树
  * <p>
  * ****************************************************
+ * Hindsight:
+ * 1.题目依然不能够在当时给出答案,Bobo给了一个略简单的答案,即对单词建立level的概念
  * ****************************************************
  * ****************************************************
  * ****************************************************
@@ -166,17 +168,67 @@ public class No126_Word_Ladder_II {
 
     }
 
-//    private void helper(String beginWord, String endWord, Set<String> wordList, char[] letters,
-//                        List<String> solution,
-//                        List<List<StringBT>> result) {
-//        if (solution.get(solution.size() - 1) == endWord) {
-//            result.add(new ArrayList(solution));
-//            return;
-//        }
-//
-//        for (int i = 0; i < letters.length; i++) {
-//            if (wordList.contains())
-//        }
-//
-//    }
+
+
+    public List<List<String>> findLadders_slow(String beginWord, String endWord, Set<String> wordList) {
+        HashMap<String, Integer> distMap = new HashMap<String, Integer>();
+        List<List<String>> re = new ArrayList<List<String>>();
+        getDist(beginWord, endWord, wordList, distMap);
+
+        dfs(beginWord, endWord, distMap, re, new ArrayList<String>());
+        System.out.println(re.toString());
+        return re;
+    }
+
+    public void dfs(String des, String word, HashMap<String, Integer> distMap, List<List<String>> re, ArrayList<String> cur) {
+        if (word.equals(des)) {
+            ArrayList<String> l = new ArrayList<>(cur);
+            l.add(word);
+            Collections.reverse(l);
+            re.add(l);
+            return;
+        }
+        cur.add(word);
+
+        for (int i = 0; i < word.length(); i++) {
+            char[] charstr = word.toCharArray();
+            for (char c = 'a'; c <= 'z'; c++) {
+                charstr[i] = c;
+                String newStr = new String(charstr);
+                if (distMap.containsKey(newStr) && distMap.get(word) - distMap.get(newStr) == 1) {
+                    dfs(des, newStr, distMap, re, cur);
+                }
+            }
+        }
+        cur.remove(cur.size() - 1);
+
+    }
+
+
+    public void getDist(String beginWord, String endWord, Set<String> wordList, HashMap<String, Integer> distMap) {
+        distMap.put(beginWord, 1);
+        Queue<String> q = new LinkedList<>();
+        q.add(beginWord);
+
+        while (!q.isEmpty()) {
+            String cur = q.poll();
+
+            for (int i = 0; i < cur.length(); i++) {
+                char[] charstr = cur.toCharArray();
+                for (char j = 'a'; j <= 'z'; j++) {
+                    charstr[i] = j;
+                    String newStr = new String(charstr);
+                    if (newStr.equals(endWord)) {
+                        distMap.put(newStr, distMap.get(cur) + 1);
+                        return;
+                    }
+                    if (wordList.contains(newStr) && !distMap.containsKey(newStr)) {
+                        distMap.put(newStr, distMap.get(cur) + 1);
+                        q.add(newStr);
+                    }
+                }
+            }
+        }
+    }
+
 }
