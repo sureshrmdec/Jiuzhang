@@ -1,4 +1,4 @@
-package leetcode.com.medium.part11;
+package leetcode.com.hard.part1;
 
 import leetcode.com.util.TreeLinkNode;
 

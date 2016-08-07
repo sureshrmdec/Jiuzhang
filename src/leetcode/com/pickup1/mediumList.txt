@@ -7,7 +7,7 @@
 组合的问题:17,34,40,77,216
 二叉树&前序遍历:144
 回文子串问题:No.005
-非典型解法:No334
+非典型解法:No334,No318
 正则表达式(hard):No044
 Easy:
 204:判断prime的方法,其实并没有理解明白,需要看个视屏消化下: https://www.youtube.com/watch?v=eKp56OLhoQs
@@ -19,7 +19,7 @@ Bucket:220,需要理解bucket元素中的相邻元素间的关系是什么------
 BST:116,173
 二分法; 81,374
 组合问题:No.241,化解并有优化处理
-DP:174
+DP:174,120
 BSF:130
 图:133(宽搜,map+list)
 杨辉三角:No.119
@@ -31,9 +31,10 @@ hard:
 DP(难):188
 图:126->时间效率要求高,通过BFS构建图,再根据DFS进行搜索
 NQueens: No051, No052
+Populating Next Right Pointers in Each Node: No.116,No.117
 //文本比较工具
 https://text-compare.com/
-
+二叉树:116,117
 后期需要进一步分析和学习的几大模块:
 1.计算式
 2.图的遍历
