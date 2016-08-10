@@ -1,5 +1,7 @@
 package leetcode.com.pickup1.medium;
 
+import leetcode.com.util.TreeNode;
+
 /**
  * Created by tclresearchamerica on 8/10/16.
  * ****************************************************
@@ -48,7 +50,20 @@ public class No129_Sum_Root_to_Leaf_Numbers {
         helper(root, 0);
         return this.sum;
     }
+//
+//    public int sumNumbers(TreeNode root) {
+//        return dfs(root, 0);
+//    }
 
+    public int dfs(TreeNode root, int pre) {
+        if (root == null) return 0;
+
+        int cur = pre * 10 + root.val;
+        if (root.left == null && root.right == null) {
+            return cur;
+        }
+        return dfs(root.left, cur) + dfs(root.right, cur);
+    }
 
     private void helper(TreeNode root, int pre) {
         if (root == null) {
