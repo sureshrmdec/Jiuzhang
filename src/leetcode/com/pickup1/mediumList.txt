@@ -27,7 +27,7 @@ BSF:130
 位操作:191,190
 house robber: 213->3个变量解决问题的做法,要搞明白哦------>TODO
 hard:
-股票系列:188
+股票系列:188, 309<cooldown>-->TODO understand it
 DP(难):188
 图:126->时间效率要求高,通过BFS构建图,再根据DFS进行搜索
 NQueens: No051, No052
@@ -39,3 +39,5 @@ https://text-compare.com/
 1.计算式
 2.图的遍历
 3.DP的整理
+
+非典型算法:038
