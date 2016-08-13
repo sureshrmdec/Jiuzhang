@@ -43,7 +43,10 @@ import java.util.List;
  */
 public class No078_Subsets {
 
-
+    public static void main(String[] args) {
+        No078_Subsets obj = new No078_Subsets();
+        obj.subsets(new int[]{1,2,3});
+    }
     public List<List<Integer>> subsets(int[] nums) {
 
 
