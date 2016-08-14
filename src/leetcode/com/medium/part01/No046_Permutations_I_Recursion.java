@@ -15,7 +15,8 @@ import java.util.List;
  * [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
  * *****************************************************
  * Solutions:
- * Recursion: 1 list to store the distinct number, if the list contains all the number, add then put the values of the list into result
+ * Recursion: 1 list to store the distinct number, if the list contains all the number, add then put the values of
+ * the list into result
  * Non_recursion:
  * *****************************************************
  * Beats: 22%
