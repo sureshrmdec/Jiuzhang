@@ -27,6 +27,7 @@ public class No020_Valid_Parentheses_My_Submissions_Question {
         if (s == null || s.length() == 0)
             return true;
         Stack<Character> stack = new Stack<>();
+
         for (Character c : s.toCharArray()) {
             if ("({[".contains(String.valueOf(c))) {
                 stack.push(c);
