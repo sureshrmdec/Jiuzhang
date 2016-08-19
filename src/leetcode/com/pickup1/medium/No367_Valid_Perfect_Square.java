@@ -38,6 +38,17 @@ package leetcode.com.pickup1.medium;
  */
 public class No367_Valid_Perfect_Square {
 
+    public static void main(String[] args) {
+        int j=1;
+        int num=0;
+        for (int i =0;i<5;i++){
+            num+=j;
+            System.out.println(num+" : "+j);
+
+            j+=2;
+        }
+    }
+
     public boolean isPerfectSquare(int num) {
 
         long r = num;
