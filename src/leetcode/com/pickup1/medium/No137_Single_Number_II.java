@@ -26,7 +26,25 @@ package leetcode.com.pickup1.medium;
  * ***************************************************************
  */
 public class No137_Single_Number_II {
+
+
     public int singleNumber(int[] nums) {
+        int result = 0;
+        int one = 0, two = 0, three = 0;
+        if (nums == null || nums.length == 0) return 0;
+        for (int num : nums) {
+            two |= one & num;
+            one ^= num;
+            three |= one & two;
+            one &= ~three;
+            two &= ~three;
+
+        }
+        return result;
+    }
+
+
+    public int singleNumber_II(int[] nums) {
         int result = 0;
         if (nums == null || nums.length == 0) return 0;
         int[] bits = new int[32];
