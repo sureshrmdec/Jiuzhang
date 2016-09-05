@@ -30,7 +30,7 @@ package leetcode.com.hard.part0;
 public class No010_Regular_Expression_Matching {
     public static void main(String[] args) {
         No010_Regular_Expression_Matching no010 = new No010_Regular_Expression_Matching();
-        System.out.println(no010.isMatch("aab", "c*a*b"));
+//        System.out.println(no010.isMatch("aab", "*"));
 
     }
 

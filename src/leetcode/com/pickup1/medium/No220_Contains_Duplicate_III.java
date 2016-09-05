@@ -28,6 +28,8 @@ import java.util.TreeSet;
  * *****************************************************************************
  * Hindsight:
  * 1.bucket的做法比较好
+ * 2.这个bucket算法,只是有个雏形的思绪,没有形成完整的思维,关键还是要认识到用除法完成对(t+1)的除法操作上。然后商作为key,再计算后的数值作为value
+ * 2.bug:计算的过程中,要注意将数组里的数值转为long型,然后再参与计算。强制类型转换方式就是(long)x
  * *****************************************************************************
  * *****************************************************************************
  * *****************************************************************************
@@ -56,6 +58,9 @@ Bucketing means we map a range of values to the a bucket. For example, if the bu
 
 Another complication is that negative ints are allowed. A simple num / t just shrinks everything towards 0. Therefore,
  we can just reposition every element to start from Integer.MIN_VALUE.
+     */
+    /*
+    桶排序的意义在于用某个数值去除(t+1),这样余数就该是在(0~t)之间,那么如果在一个桶里面,又满足这个条件,肯定就是答案啦,前后桶的话,还是要计算下咯
      */
     public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
         if (k < 1 || t < 0) return false;

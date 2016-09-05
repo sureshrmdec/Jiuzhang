@@ -18,9 +18,9 @@ package leetcode.com.hard.part0;
  * 似乎对于二分法来说，需要保证将wehile的循环条件设置成（start+1<end)，这样比较靠谱。。。
  * while循环中单独对mid进行处理，还有最后要对start和end分别处理下，也不要忘记哦
  */
-public class No033_Search_in_Rotated_Sorted_Array_My_Submissions_Question {
+public class No033_Search_in_Rotated_Sorted_Array {
     public static void main(String[] args) {
-        No033_Search_in_Rotated_Sorted_Array_My_Submissions_Question no033 = new No033_Search_in_Rotated_Sorted_Array_My_Submissions_Question();
+        No033_Search_in_Rotated_Sorted_Array no033 = new No033_Search_in_Rotated_Sorted_Array();
         no033.search(new int[]{5, 1, 3}, 5);
     }
 
