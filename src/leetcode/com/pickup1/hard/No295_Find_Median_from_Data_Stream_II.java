@@ -10,6 +10,11 @@ package leetcode.com.pickup1.hard;
  * ****************************************************
  */
 public class No295_Find_Median_from_Data_Stream_II {
+    public static void main(String[] args) {
+        int num =1;
+        System.out.println("yuil;");
+        System.out.println();
+    }
 }
 
 class MedianFinder_II {

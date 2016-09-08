@@ -6,6 +6,7 @@ package leetcode.com.util;
  */
 public class TreeNode {
     public int val;
+    public int rank;
     public TreeNode left;
     public TreeNode right;
 
