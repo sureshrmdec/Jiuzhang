@@ -35,7 +35,9 @@ import java.util.Stack;
  * Hindsight:
  * Binart Tree 的非递归解法,没有记牢,之前在递归解法上浪费了太多的时间啦
  */
-public class No297_Serialize_and_Deserialize_Binary_Tree {}
+public class No297_Serialize_and_Deserialize_Binary_Tree {
+}
+
 class Codec {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
@@ -47,6 +49,7 @@ class Codec {
         sb.deleteCharAt(0);
         return sb.toString();
     }
+
     private void helper(TreeNode root, StringBuilder sb) {
         if (root == null) {
             sb.append(",null");
@@ -57,6 +60,7 @@ class Codec {
         helper(root.left, sb);
         helper(root.right, sb);
     }
+
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
         if (data == null) return null;
@@ -88,6 +92,68 @@ class Codec {
                 }
             }
             index++;
+        }
+        return root;
+    }
+}
+
+class Codec_webpage_version {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        Stack<TreeNode> stack = new Stack<>();
+        do {
+            sb.append(",");
+            if (root == null) {
+                sb.append("null");
+                if (!stack.isEmpty()) root = stack.pop().right;
+            } else {
+//                sb.append(",");
+                sb.append(root.val);
+                stack.push(root);
+                root = root.left;
+            }
+        } while (root != null || !stack.isEmpty());
+
+        return sb.toString().substring(1);
+    }
+
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        String[] nodes = data.split(",");
+        if (nodes[0].equals("null")) return null;
+        TreeNode root = new TreeNode(Integer.valueOf(nodes[0]));
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        boolean leftFlg = true;
+        for (int i = 1; i < nodes.length; i++) {
+            TreeNode parent = stack.peek();
+            if (leftFlg) {
+                if (!nodes[i].equals("null")) {
+//                    TreeNode node =new TreeNode(Integer.valueOf(nodes[i]));
+//                    stack.peek().left=node;
+                    parent.left = new TreeNode(Integer.valueOf(nodes[i]));
+
+                    stack.push(parent.left);
+                } else {
+                    leftFlg = false;
+                }
+            } else {
+                //optimization:
+                stack.pop();
+                if (!nodes[i].equals("null")) {
+//                    TreeNode node =new TreeNode(Integer.valueOf(nodes[i]));
+                    parent.right = new TreeNode(Integer.valueOf(nodes[i]));
+                    stack.push(parent.right);
+                    leftFlg = true;
+//                } else {
+                    //bug:此时不必设置flg
+                    // leftFlg=true;
+//                    stack.pop();
+                }
+            }
         }
         return root;
     }
