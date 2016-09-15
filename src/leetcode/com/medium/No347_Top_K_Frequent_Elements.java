@@ -30,6 +30,23 @@ import java.util.*;
  */
 public class No347_Top_K_Frequent_Elements {
     public static void main(String[] args) {
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        queue.add(9);
+        queue.add(8);
+        queue.add(18);
+        queue.add(1);
+        queue.add(66);
+        Iterator<Integer> it =queue.iterator();
+        while (it.hasNext()){
+            System.out.println(it.next());
+
+        }
+        System.out.println("-------------");
+
+        while (!queue.isEmpty()) {
+            System.out.println(queue.poll());
+        }
         No347_Top_K_Frequent_Elements obj = new No347_Top_K_Frequent_Elements();
 //        int[] nums = {1, 1, 1, 2, 2, 3};
         int[] nums = {1, 2};
@@ -58,7 +75,7 @@ public class No347_Top_K_Frequent_Elements {
 
         //bug3:因为循环中会对priorityQueue的进行poll操作,所以其长度一直在不断缩小,
         // 那么就不能在for循环的条件判断中使用priorityQueue.size()!!!极其重要哦!!!!
-        int size =priorityQueue.size();
+        int size = priorityQueue.size();
         for (int i = 0; i < k && i < size; i++) {
             rst.add(priorityQueue.poll().key);
         }
@@ -69,7 +86,6 @@ public class No347_Top_K_Frequent_Elements {
 
 
     public List<Integer> topKFrequent_Slow(int[] nums, int k) {
-
         List<Integer> rst = new ArrayList<>();
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         PriorityQueue<HashMap.Entry<Integer, Integer>> priorityQueue = new PriorityQueue<>(new EntryCompare());
@@ -105,6 +121,7 @@ class MyEntryCompare implements Comparator<MyEntry> {
         return 1;
     }
 }
+
 class MyEntry {
     Integer key;
     Integer value;
