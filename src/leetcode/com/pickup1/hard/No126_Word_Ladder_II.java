@@ -36,12 +36,136 @@ import java.util.*;
  * <p>
  * ****************************************************
  * Hindsight:
+ * I
  * 1.题目依然不能够在当时给出答案,Bobo给了一个略简单的答案,即对单词建立level的概念
+ * 2.09/17/16 在level的那个解法中,DFS是逆向开始遍历的,从endword开始,一旦endword和newword的level差为,
+ * 则继续DFS递归调用
+ * 3.退出递归的条件就是循环完毕所有的备选节点,或是找到答案。
+ * 4.这个level的做法需要注意的是,在将备选答案集放入list中的时候,需要进行一次reverse,否则会出现逆序的问题
+ * Collections.reverse(l)即可
+ * II
+ * 1.那个快速的方法,是快速构建BFS集合,然后再用DFS进行遍历完毕才可以的
+ * <p>
  * ****************************************************
  * ****************************************************
  * ****************************************************
  */
 public class No126_Word_Ladder_II {
+
+
+    public List<List<String>> findLadders_prac(String beginWord, String endWord, Set<String> wordList) {
+        //最短路径的话,还是要考虑BFS优先的好, 其实要处理的
+        //问题:
+        // 1.避免单词回指到前面的单词去,所以需要从这个备选的列表中剔除这个词
+        // 2.
+        //module: 需要一个判断方法,判断当前单词的邻居是否在列表中,
+        //顺序:1.建图,一旦发现目标单词存在,是否直接退出呢?
+
+        Set<String> fwd = new HashSet<>();
+        fwd.add(beginWord);
+        Set<String> bwd = new HashSet<>();
+        bwd.add(endWord);
+
+        Map<String, List<String>> hs = new HashMap<>();
+        boolean[] connected = new boolean[1];
+        setupBFS(fwd, bwd, wordList, false, hs, connected);
+
+        List<List<String>> result = new ArrayList<>();
+        //如果没有联系的话,直接返回空集就好
+        if (!connected[0]) return result;
+
+        List<String> solution = new ArrayList<>();
+        solution.add(beginWord);
+
+        traverseDFS(result, solution, beginWord, endWord, hs);
+
+        return result;
+    }
+
+    private void setupBFS(Set<String> forward,
+                          Set<String> backward,
+                          Set<String> dict,
+                          boolean swap,
+                          Map<String, List<String>> hs,
+                          boolean[] connected) {
+        //boundary check
+        if (forward.isEmpty() || backward.isEmpty()) return;
+
+        //opt2:adjust the order of the set
+        if (forward.size() > backward.size()) {
+            setupBFS(backward, forward, dict, !swap, hs, connected);
+            //bug2:图形逆转后,直接返回就可以了,否则结果会错误的
+            return;
+        }
+        //remove all forward/backward from dict to avoid duplicate addition
+        //opt1:delete set from set
+        dict.removeAll(forward);
+        dict.removeAll(backward);
+
+        //setup next forward
+        Set<String> newSet = new HashSet<>();
+
+        //do BFS for every node in forward
+        for (String s : forward) {
+            for (int i = 0; i < s.length(); i++) {
+                //try to setup new word with changing only one letter
+                char[] chars = s.toCharArray();
+                for (char j = 'a'; j <= 'z'; j++) {
+                    chars[i] = j;
+                    String temp = new String(chars);
+                    //we skip this string if it is not in dict nor in backward
+                    //bug1:因为forward已经被处理过了,而只有dict和backwards需要比较
+                    if (!backward.contains(temp) && !dict.contains(temp)) {
+                        continue;
+                    }
+                    //we follow the forward direction
+                    //因为forward&backward可能会调换位置,所以key-value会需要变更,但无论如何,
+                    String key = !swap ? s : temp;
+                    String value = !swap ? temp : s;
+                    if (!hs.containsKey(key)) {
+                        hs.put(key, new ArrayList<>());
+                    }
+                    hs.get(key).add(value);
+                    //if temp string is in backward set, then it will connect 2 pars;
+                    if (backward.contains(temp)) connected[0] = true;
+                    if (!connected[0] && dict.contains(temp)) {
+                        //此处需要重新构造forward set 所有将字符串加入new set中
+                        newSet.add(temp);
+                    }
+                }
+
+
+            }
+        }
+
+        if (!connected[0]) {
+            setupBFS(newSet, backward, dict, swap, hs, connected);
+        }
+    }
+
+
+    public void traverseDFS(List<List<String>> result,
+                            List<String> solution,
+                            String start,
+                            String end,
+                            Map<String, List<String>> hs) {
+
+        if (start.equals(end)) {
+            result.add(new ArrayList<>(solution));
+        }
+        // not each node in hs is valid node in shortest path, if we found current node does not have children node
+        //then it mean it's not in shortest path
+        if (!hs.containsKey(start)) {
+            return;
+        }
+
+        for (String s : hs.get(start)) {
+            solution.add(s);
+            traverseDFS(result, solution, s, end, hs);
+            //bug1:此处删除最后一个元素应该
+            solution.remove(solution.size() - 1);
+        }
+    }    //最短路径,所以这个适用于图的解法,DFS? BFS?
 
 
     boolean isConnected = false;
@@ -169,44 +293,49 @@ public class No126_Word_Ladder_II {
     }
 
 
-
     public List<List<String>> findLadders_slow(String beginWord, String endWord, Set<String> wordList) {
         HashMap<String, Integer> distMap = new HashMap<String, Integer>();
         List<List<String>> re = new ArrayList<List<String>>();
         getDist(beginWord, endWord, wordList, distMap);
-
-        dfs(beginWord, endWord, distMap, re, new ArrayList<String>());
+        List<String> solution = new ArrayList();
+        solution.add(endWord);
+        dfs(beginWord, endWord, distMap, re, solution);
         System.out.println(re.toString());
         return re;
     }
 
-    public void dfs(String des, String word, HashMap<String, Integer> distMap, List<List<String>> re, ArrayList<String> cur) {
-        if (word.equals(des)) {
+    public void dfs(String beginWord, String endWord, HashMap<String, Integer> distMap, List<List<String>> re, List<String> cur) {
+        if (endWord.equals(beginWord)) {
             ArrayList<String> l = new ArrayList<>(cur);
-            l.add(word);
+            // l.add(endWord);
+
             Collections.reverse(l);
             re.add(l);
+
+
             return;
         }
-        cur.add(word);
 
-        for (int i = 0; i < word.length(); i++) {
-            char[] charstr = word.toCharArray();
+        for (int i = 0; i < endWord.length(); i++) {
+            char[] chars = endWord.toCharArray();
             for (char c = 'a'; c <= 'z'; c++) {
-                charstr[i] = c;
-                String newStr = new String(charstr);
-                if (distMap.containsKey(newStr) && distMap.get(word) - distMap.get(newStr) == 1) {
-                    dfs(des, newStr, distMap, re, cur);
+                chars[i] = c;
+                String newStr = new String(chars);
+                //opt:此处通过level的减法,判断两个单词是否相邻
+                if (distMap.containsKey(newStr) && distMap.get(endWord) - distMap.get(newStr) == 1) {
+                    cur.add(newStr);
+                    dfs(beginWord, newStr, distMap, re, cur);
+                    cur.remove(cur.size() - 1);
                 }
             }
         }
-        cur.remove(cur.size() - 1);
 
     }
 
 
     public void getDist(String beginWord, String endWord, Set<String> wordList, HashMap<String, Integer> distMap) {
         distMap.put(beginWord, 1);
+        //先进先出 FIFO
         Queue<String> q = new LinkedList<>();
         q.add(beginWord);
 
@@ -214,10 +343,10 @@ public class No126_Word_Ladder_II {
             String cur = q.poll();
 
             for (int i = 0; i < cur.length(); i++) {
-                char[] charstr = cur.toCharArray();
+                char[] chars = cur.toCharArray();
                 for (char j = 'a'; j <= 'z'; j++) {
-                    charstr[i] = j;
-                    String newStr = new String(charstr);
+                    chars[i] = j;
+                    String newStr = new String(chars);
                     if (newStr.equals(endWord)) {
                         distMap.put(newStr, distMap.get(cur) + 1);
                         return;

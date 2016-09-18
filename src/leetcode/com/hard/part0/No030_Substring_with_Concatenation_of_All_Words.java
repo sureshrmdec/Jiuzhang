@@ -49,96 +49,9 @@ public class No030_Substring_with_Concatenation_of_All_Words {
         String[] words2 = {"word", "good", "best", "good"};
         s = "1wordgoodgoodgoodbestword";
 
-        obj.findSubstring(s, words2);
+//        obj.findSubstring(s, words2);
     }
 
-    public List<Integer> findSubstring(String s, String[] words) {
-
-        List<Integer> rst = new ArrayList<>();
-
-        int sLen = s.length();
-        int wNum = words.length;
-
-        if (sLen == 0 || wNum == 0 || words[0].length() == 0)
-            return rst;
-        int wLen = words[0].length();
-
-        Map<String, Integer> map = new HashMap<>();
-        int[] counts = new int[wNum];
-
-        //Mapping words to integer IDs and count the occurrences of each unique word int the given word array
-        for (int i = 0; i < wNum; i++) {
-            //关键节点1:这个思想可以记下啦,
-            Integer id = map.get(words[i]);
-            if (id == null) {
-                id = map.size();
-                map.put(words[i], id);
-            }
-            counts[id]++;
-        }
-
-        int mNum = sLen - wNum + 1;
-
-        List<List<Integer>> matchList = new ArrayList<>();
-        for (int i = 0; i < wLen; i++) {
-            matchList.add(new ArrayList<>());
-        }
-
-        //scan the string s and convert the string into different ID lists
-        //此时,输出的结果,就是在(i % WLen)位置上曾经match过的word的Id有哪些,
-        //因为是顺序的所以递增的.
-        //重要:如果是没有匹配的字符,那么就会在list里面存null--->因为map没有get到
-        //所以,它是个动态窗口,每次被平移的wLen的位置的信息,都被放到了这list中,
-        //这才是解决这个问题的王道啊
-
-        for (int i = 0; i < mNum; i++) {
-            //关键节点2:窗口的效果
-            matchList.get(i % wLen).add(map.get(s.substring(i, i + wLen)));
-        }
-
-        //关键节点3:输出结果
-        //开始使用这个结果
-        //scan each ID list with a wNum-long window and see whether a window has all the words in given words array
-        for (int offset = 0; offset < wLen; offset++) {
-            List<Integer> list = matchList.get(offset);
-            int[] cMap = new int[wNum];
-            int pos = -1;
-            for (int begin = 0, end = wNum - 1; end < list.size(); end++, begin++) {
-                //expire the valid ids
-                if (pos < begin) {
-                    pos = begin;
-                }
-
-                while (pos <= end) {
-                    Integer id = list.get(pos);
-                    //关键节点4:找不到,或者重复出现次数多余预期,则跳出
-                    //cMap还有个计数器的作用
-                    // it means a unknown word found or a word having too many occurrences in the window
-                    if (id == null || cMap[id] == counts[id]) {
-                        break;
-                    }
-                    cMap[id]++;
-                    pos++;
-                }
-
-                // means the window have all the words
-                if (pos == end + 1) {
-                    rst.add(offset + begin * wLen);
-                }
-
-                //关键节点5:因为马上begin,所以要打扫下现场,但是因为可能是因为null而跳出来的
-                //所以要判断下
-                //remove the count of the word at the old position
-                Integer oldId = list.get(begin);
-                if (oldId != null) {
-                    cMap[oldId] --;
-                }
-            }
-        }
-
-
-        return rst;
-    }
 
     public List<Integer> findSubstring_TLE_II(String s, String[] words) {
 
