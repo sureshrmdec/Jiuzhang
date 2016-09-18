@@ -18,32 +18,13 @@ import leetcode.com.util.TreeNode;
  * 要能够想到叶子节点需要单独拿出来处理的啊啊啊啊啊啊啊
  */
 public class No111_Minimum_Depth_of_Binary_Tree {
+
+
+
     public int minDepth(TreeNode root) {
         if (root == null) return 0;
-        int[] min = new int[1];
-        min[0] = Integer.MAX_VALUE;
-        helper(root, min, 1);
-        return min[0];
-    }
 
-    private void helper(TreeNode root, int[] min, int depth) {
-        if (root == null) {
-            min[0] = Integer.min(depth, min[0]);
-            return;
-        }
-        if (root.left == null && root.right == null) {
-            min[0] = Integer.min(depth, min[0]);
-
-        }
-        if (root.left != null) helper(root.left, min, depth + 1);
-        if (root.right != null) helper(root.left, min, depth + 1);
-    }
-
-
-    public int minDepth_rec(TreeNode root) {
-        if (root == null) return 0;
-
-        return getMin(root);
+        return getMin_rec(root);
     }
 
     public int getMin_rec(TreeNode root) {
