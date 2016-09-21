@@ -52,17 +52,17 @@ import leetcode.com.util.TreeNode;
  */
 public class No337_House_Robber_III {
     public int rob(TreeNode root) {
-        int[] rst = tour(root);
+        int[] rst = dfs(root);
 
         return Math.max(rst[0], rst[1]);
     }
 
-    private int[] tour(TreeNode root) {
+    private int[] dfs(TreeNode root) {
         int[] rst = new int[2];
         if (root == null) return rst;
 
-        int[] left = tour(root.left);
-        int[] right = tour(root.right);
+        int[] left = dfs(root.left);
+        int[] right = dfs(root.right);
 
         rst[0] = root.val + left[1] + right[1];
         rst[1] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);

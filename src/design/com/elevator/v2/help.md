@@ -29,6 +29,7 @@ Interviewer and Applicants spent 1 hour on this discussion, During this discussi
 Here is one snapshot of the code which applicant written, and that discussed during the whole 60 Minutes of face to face Object Oriented Design Interview .
 
 ### Make sure reqirements
+
     * How many floors : 10 floors – 1st floor lobby / 2nd floor parking garage
     * How entry/exit works : Enter to the building /exit building – happens from 1st or 2nd
     * Number of Elevators : Three elevators – no limitations 1 to 10 , people are sitting from 1 to 10
@@ -36,5 +37,6 @@ Here is one snapshot of the code which applicant written, and that discussed dur
     * Certain requirement we can talk in between / main thing is to design the system
     * Assumption: Lets say we are in the floor-2 / we would like to call the elevator;
 
+### Git source:https://github.com/joeblau/sample-elevator-control-system/tree/master/src
 ## Intelij Idea 设置
  * Ref:http://www.cnblogs.com/ShaYeBlog/p/4540915.html

@@ -7,7 +7,7 @@ package design.com.elevator.v1;
 public class Request {
     public long time;
     public Integer floor;
-    public String direction:
+    public String direction;
 
     public Request(long time, Integer floor, String direction) {
         this.time = time;
