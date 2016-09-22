@@ -1,4 +1,4 @@
-package ctc.com.viii.ch1.arrays;
+package ctc.com.viii.ch01.arrays;
 
 import leetcode.com.util.ListNode;
 

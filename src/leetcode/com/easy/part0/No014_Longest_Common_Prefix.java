@@ -31,4 +31,29 @@ public class No014_Longest_Common_Prefix {
         }
         return prefix;
     }
+    public String longestCommonPrefix_board(String[] strs) {
+        //boundary check
+        if(strs==null || strs.length==0) return "";
+        String temp =strs[0];
+        for(String str:strs){
+            if(str.length()<temp.length()) temp=str;
+        }
+
+        //travse
+        int index=0;
+        for(String str: strs){
+            int len= temp.length();
+            index=0;
+            while(index<len){
+                if(temp.charAt(index)==str.charAt(index)){
+                    index++;
+                }else{
+                    break;
+                }
+            }
+            if(index==0) break;
+            temp=temp.substring(0,index);
+        }
+        return temp.substring(0,index);
+    }
 }
