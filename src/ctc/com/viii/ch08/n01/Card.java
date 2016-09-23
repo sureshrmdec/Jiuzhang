@@ -12,13 +12,22 @@ public abstract class Card {
         this.faceValue = c;
         this.suit = s;
     }
-    public abstract int value();
-    public Suit suit(){return suit;}
 
-    public boolean isAvailable(){
+    public abstract int value();
+
+    public Suit suit() {
+        return suit;
+    }
+
+    public boolean isAvailable() {
         return available;
     }
-    public void markUnavailabel(){
 
+    public void markUnavailable() {
+        available = false;
+    }
+
+    public void markAvailable() {
+        available = true;
     }
 }
