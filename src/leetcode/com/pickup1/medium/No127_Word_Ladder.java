@@ -41,7 +41,6 @@ public class No127_Word_Ladder {
 
         int result = 0;
 
-        Map<String, List<String>> graph = new HashMap<>();
 
         Set<String> set = getNextWord(beginWord, wordList);
         result++;

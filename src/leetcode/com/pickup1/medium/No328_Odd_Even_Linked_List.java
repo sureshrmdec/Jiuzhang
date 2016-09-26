@@ -31,27 +31,29 @@ import java.util.List;
  * ****************************************************
  */
 public class No328_Odd_Even_Linked_List {
-    public ListNode oddEvenList(ListNode head) {
-        if (head == null) return head;
 
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode prev = dummy;
+    public ListNode oddEvenList(ListNode head) {
+        //boundary check
+        if (head == null || head.next == null) return head;
+        ListNode oddHead = new ListNode(-1);
         ListNode evenHead = new ListNode(-1);
-        ListNode evenPrev = evenHead;
-        while (head != null) {
-            if (head.val % 2 == 0) {
-                evenPrev.next = head;
-                prev.next = head.next;
-                head = head.next;
-                evenPrev.next = null;
-            } else {
-                prev = head;
-                head = head.next;
-            }
+        //bug1:此时even应取evenHead的值,而不是设个null给他
+        ListNode even = evenHead;
+        oddHead.next = head;
+        ;
+
+        while (head.next != null) {
+            //bug2:此时even应取evenHead的值,而不是设个null给他
+            even.next = head.next;
+            even = even.next;
+            head.next = head.next.next;
+            if (head.next == null) break;
+            head = head.next;
+
         }
-        prev.next = evenHead.next;
-        return dummy.next;
+        even.next = null;
+        head.next = evenHead.next;
+        return oddHead.next;
 
     }
 }

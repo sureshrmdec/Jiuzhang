@@ -36,33 +36,58 @@ import java.util.TreeMap;
  * **************************************************************
  */
 public class No352_Data_Stream_as_Disjoint_Intervals {
+    public static void main(String[] args) {
+        SummaryRanges obj = new SummaryRanges();
+        obj.addNum(1);
+        obj.getIntervals();
+        obj.addNum(3);
+        obj.getIntervals();
+        obj.addNum(7);
+        obj.getIntervals();
+        obj.addNum(2);
+        obj.getIntervals();
+        obj.addNum(8);
+        obj.getIntervals();
+//        obj.addNum(3);
+
+    }
 }
 
 class SummaryRanges {
     TreeMap<Integer, Interval> tree;
 
+    /**
+     * Initialize your data structure here.
+     */
     public SummaryRanges() {
-        tree = new TreeMap<>();
+        tree = new TreeMap();
     }
 
     public void addNum(int val) {
-        if(tree.containsKey(val)) return;
+        if (tree.containsKey(val)) return;
+        ;
         Integer l = tree.lowerKey(val);
         Integer h = tree.higherKey(val);
-        if(l != null && h != null && tree.get(l).end + 1 == val && h == val + 1) {
+        //check if the lowerkey and the higherkey exist
+        if (l != null && h != null && tree.get(l).end == val - 1 && h == val + 1) {
             tree.get(l).end = tree.get(h).end;
             tree.remove(h);
-        } else if(l != null && tree.get(l).end + 1 >= val) {
+        } else if (l != null && tree.get(l).end + 1 >= val) {
             tree.get(l).end = Math.max(tree.get(l).end, val);
-        } else if(h != null && h == val + 1) {
+
+            //bug1: h==val+1条件的成因,因为h是比val略大的一个数字,如果要发入它的区间,那么必须要保证h==val+1,
+            // 不会出现 val在h区间内,如果出现的话,那么它就是l了,而不是high
+        } else if (h != null && h == val + 1) {
             tree.put(val, new Interval(val, tree.get(h).end));
             tree.remove(h);
         } else {
             tree.put(val, new Interval(val, val));
+
         }
+
     }
 
     public List<Interval> getIntervals() {
-        return new ArrayList<>(tree.values());
+        return new ArrayList(tree.values());
     }
 }
