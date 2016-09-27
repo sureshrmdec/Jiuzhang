@@ -45,13 +45,35 @@ public class No304_Range_Sum_Query_2D_Immutable {
 }
 
 class NumMatrix {
+    int[][] sumMatrix;
 
     public NumMatrix(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return;
+        setupSumMatrix(matrix);
+    }
 
+    private void setupSumMatrix(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        sumMatrix = new int[row][col];
+        //bug1:没有进行累加，还是需要累加的
+        sumMatrix[0][0] = matrix[0][0];
+        for (int j = 1; j < col; j++) sumMatrix[0][j] = matrix[0][j] + sumMatrix[0][j - 1];
+        for (int j = 1; j < row; j++) sumMatrix[j][0] = matrix[j][0] + sumMatrix[j - 1][0];
+
+        for (int i = 1; i < row; i++) {
+            for (int j = 1; j < col; j++) {
+                sumMatrix[i][j] = matrix[i][j] + sumMatrix[i - 1][j] + sumMatrix[i][j - 1] - sumMatrix[i - 1][j - 1];
+            }
+        }
     }
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
-
+        int temp = sumMatrix[row2][col2];
+        if (row1 > 0) temp -= sumMatrix[row1 - 1][col2];
+        if (col1 > 0) temp -= sumMatrix[row2][col1 - 1];
+        if (row1 > 0 && col1 > 0) temp += sumMatrix[row1 - 1][col1 - 1];
+        return temp;
     }
 }
 
