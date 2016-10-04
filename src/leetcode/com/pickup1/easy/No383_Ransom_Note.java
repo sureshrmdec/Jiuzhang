@@ -22,8 +22,10 @@ import org.omg.CORBA.INTERNAL;
  * canConstruct("aa", "aab") -> true
  * ****************************************************
  * Thoughts:
- * <p>
+ * 题意没有理解清楚,其实只是要考虑是否后面的字符可以构成前面的字符。
  * ****************************************************
+ * Hindsight:
+ * 统计字符的个数是否满足ransom note
  * ****************************************************
  * ****************************************************
  * ****************************************************
@@ -56,10 +58,13 @@ public class No383_Ransom_Note {
 
     public boolean canConstruct(String ransomNote, String magazine) {
         int[] count = new int[26];
-        for (char c : ransomNote.toCharArray()) {
+        for (char c : magazine.toCharArray()) {
             count[c - 'a'] += 1;
         }
-//        for ()
-        return false;
+        for (char c : ransomNote.toCharArray()) {
+            count[c - 'a']--;
+            if (count[c - 'a'] < 0) return false;
+        }
+        return true;
     }
 }
