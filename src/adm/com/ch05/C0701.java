@@ -7,7 +7,7 @@ package adm.com.ch05;
 public class C0701 {
 }
 
-class ConnectedComponents extends BFS {
+class ConnectedComponents extends GraphTraverse {
     public void connectedComponents(GraphStructure.Graph graph) {
         int c;//components number
         int i;

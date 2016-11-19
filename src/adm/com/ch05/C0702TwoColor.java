@@ -8,7 +8,7 @@ enum Color {
     WHITE, BALCK;
 }
 
-public class C0702TwoColor extends BFS {
+public class C0702TwoColor extends GraphTraverse {
     //设置成初期状态null
     public Color[] color = new Color[MAXV];
     public boolean bipartite = true;
