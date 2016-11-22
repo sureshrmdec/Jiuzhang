@@ -31,7 +31,7 @@ public class BFS extends GraphTraverse {
             while (p != null) {
                 //取得邻接节点
                 y = p.y;
-
+                //check exercise 5-6就会明白 即使节点y被处理过,但只要是有向图,就还是要奥继续处理的,毕竟有向图,不需要逆向处理
                 if (processed[y] == false || graph.isDirected) {
                     processEdge(v, y);
                 }

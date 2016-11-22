@@ -14,6 +14,15 @@ public class Exercise {
     // where x is neither an ancestor nor descendant of y, in cross edge (x,y).
     //Answer:BFS路径中,如果x既不是y的祖先也不是y的孩子,也就意味着没有通过x找到y,也没有通过y找到x。那这个图就是一堆离散的点了?
 
+    /*
+    Ref:https://github.com/abdulapopoola/TADMBook/blob/master/Chapter%205/5.06.md
+    5-6:
+    A graph with root v and depth 1 (all n nodes are directly accessible from the root v).
+
+    A graph with root v and a linear chain of n nodes.
+
+    A graph with root v and two equal linear branches of lengths n/2.
+     */
 
 
 }

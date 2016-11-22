@@ -8,7 +8,7 @@ enum Color {
     WHITE, BALCK;
 }
 
-public class C0702TwoColor extends GraphTraverse {
+public class C0702TwoColor extends BFS {
     //设置成初期状态null
     public Color[] color = new Color[MAXV];
     public boolean bipartite = true;
@@ -24,7 +24,7 @@ public class C0702TwoColor extends GraphTraverse {
         for (i = 1; i < graph.nVertexes; i++) {
             if (discovered[i] == false) {
                 color[i] = Color.WHITE;
-                bfs(graph, i);
+                traverse(graph, i);
             }
         }
 

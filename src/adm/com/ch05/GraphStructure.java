@@ -5,11 +5,8 @@ import adm.com.ch08.EditDistance;
 /**
  * Created by tclresearchamerica on 11/16/16.
  */
-public class C0201 {
 
-}
-
-class GraphStructure {
+public class GraphStructure {
     public int MAXV = 1000;/*maxium number of vertexes*/
 
 
@@ -69,7 +66,7 @@ class GraphStructure {
 
     }
 
-    class EdgeNode {
+    public class EdgeNode {
         int y;/* adjacency info 邻接点*/
         int weight;/* edge weight, if any */
         EdgeNode next;/* next edge in list */
@@ -81,7 +78,6 @@ class GraphStructure {
     }
 
     class Graph {
-
 
         EdgeNode[] edgeNodes = new EdgeNode[MAXV + 1];/* adjacency info */
         int[] degrees = new int[MAXV + 1];/* outdegree of each vertex */
@@ -101,7 +97,6 @@ class GraphStructure {
             }
         }
     }
-
 
 }
 
