@@ -8,6 +8,10 @@ public class C0701 {
 }
 
 class ConnectedComponents extends GraphTraverse {
+    public void traverse(GraphStructure.Graph graph, int start) {
+
+    }
+
     public void connectedComponents(GraphStructure.Graph graph) {
         int c;//components number
         int i;
@@ -22,7 +26,7 @@ class ConnectedComponents extends GraphTraverse {
             if (discovered[i] == false) {
                 c++;
                 System.out.printf("Component %d", c);
-                bfs(graph, i);
+                traverse(graph, i);
                 System.out.println();
             }
         }

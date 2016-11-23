@@ -27,8 +27,8 @@ class LongestCommonSubsequence extends EditDistance {
 
     public static void main(String[] args) {
         LongestCommonSubsequence lcs = new LongestCommonSubsequence();
-        String s = "democrat";
-        String t = "republican";
+        String s = "democratbbbbb";
+        String t = "republicanbbbbb";
 
         int i = s.length();
         int j = t.length();
