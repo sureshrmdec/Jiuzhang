@@ -6,4 +6,7 @@ package alg4.com.ch0101;
  * 如何计算logN呢?
  */
 public class P_20 {
+
+
+//aaaaaaaaa
 }
