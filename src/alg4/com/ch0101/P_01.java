@@ -3,11 +3,11 @@ package alg4.com.ch0101;
 /**
  * Created by JianZhang on 12/4/16.
  */
-public class Exercises_01 {
+public class P_01 {
 
     public static void main(String[] args) {
-        Exercises_01.pro_006();
-        Exercises_01.pro_007();
+        P_01.pro_006();
+        P_01.pro_007();
 
     }
 

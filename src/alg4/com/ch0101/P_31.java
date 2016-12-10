@@ -5,8 +5,10 @@ import edu.princeton.cs.algs4.StdRandom;
 
 /**
  * Created by JianZhang on 12/5/16.
+ * Copied from
+ * https://github.com/aistrate/AlgorithmsSedgewick/blob/master/1-Fundamentals/1-1-BasicProgModel/Ex_1_1_31.java
  */
-public class Ex_01_01_31 {
+public class P_31 {
     public static void drawRandConn(int n, double p) {
         StdDraw.setCanvasSize(1024, 1024);
         StdDraw.setScale(-1.0, 1.0);
