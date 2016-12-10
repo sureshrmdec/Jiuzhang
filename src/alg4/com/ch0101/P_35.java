@@ -19,7 +19,7 @@ public class P_35 {
             for (double d : dist)
                 System.out.printf("%2.5f ", d);
             System.out.println();
-            System.out.println("-------------------------------");
+            System.out.println("------------------------------- ");
         }
         System.out.println("===============================");
         for (double d : dist)
