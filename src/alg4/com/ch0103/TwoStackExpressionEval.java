@@ -1,4 +1,4 @@
-package alg4.com.cha0103;
+package alg4.com.ch0103;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
