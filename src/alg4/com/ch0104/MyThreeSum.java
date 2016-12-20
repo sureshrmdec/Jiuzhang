@@ -1,13 +1,12 @@
 package alg4.com.ch0104;
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
  * Created by JianZhang on 12/19/16.
  */
-public class ThreeSum {
+public class MyThreeSum {
     public static int count(int[] a) {  // Count triples that sum to 0.
         int N = a.length;
         int cnt = 0;
@@ -29,7 +28,7 @@ public class ThreeSum {
             a = StdRandom.uniform(-1000000, 1000000);
         }
         MyStopWatch stopWatch = new MyStopWatch();
-        int cnt = ThreeSum.count(array);
+        int cnt = MyThreeSum.count(array);
         double time = stopWatch.elapsedTime();
         StdOut.println(cnt + " triples " + time);
     }
